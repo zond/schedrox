@@ -1,0 +1,15 @@
+<td>
+  <% if (!hideDetails) { %>
+  <a href="/settings/roles/<%- model.get('id') %>" class="open" data-user-id="<%- model.get("id") %>">
+    <% } %>
+    <%- model.get("name") %>
+    <% if (!hideDetails) { %>
+  </a>
+  <% } %>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Roles', role: model.get('name'), write: true })) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

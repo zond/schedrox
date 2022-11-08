@@ -1,0 +1,42 @@
+<h3>{{.I "Event contacts" }}</h3>
+<p>{{.I "Selecting a long time span may result in the server process crashing due to too many events being loaded into memory. In that case, select a shorter time span and try again."}}</p>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<form class="form-horizontal" action="/download/events/reports/contacts.csv">
+			<input type="hidden" name="domain" value="<%= app.getDomain().get('id') %>" />
+			<input id="event_type_id" type="hidden" name="event_type_id" value="<%= event_type.get('id') %>" />
+			<input id="unix_start" type="hidden" name="unix_start" value="<%= parseInt(from.getISOTime() / 1000) %>" />
+			<input id="unix_to" type="hidden" name="unix_to" value="<%= parseInt(to.getISOTime() / 1000) %>" />
+			<div class="span1">
+				{{.I "From" }}
+			</div>
+			<div class="span1">
+				<input class="date-input" id="report_from" name="start" type="text" value="<%- anyDateConverter.format(from) %>">
+			</div>
+			<div class="span1">
+				{{.I "To" }}
+			</div>
+			<div class="span1">
+				<input class="date-input" id="report_to" name="to" type="text" value="<%- anyDateConverter.format(to) %>">
+			</div>
+			<div class="span2">
+				<div class="control-group">
+					<label class="control-label" for="event_type">{{.I "Type"}}</label>
+					<div class="controls">
+						<div class="btn-group">
+							<a id="available_types_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+								<%- event_type.get('name') %>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" id="available_event_types">
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="span1">
+				<input type="submit" class="fetch-button btn btn-default" value="{{.I "Fetch" }}"/>
+			</div>
+		</form>
+	</div>
+</div>

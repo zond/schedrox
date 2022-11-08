@@ -1,0 +1,31 @@
+<table class="table table-condensed">
+	<caption>{{.I "Report overview"}}</caption>
+	<tr>
+		<td>{{.I "Users" }}</td>
+		<td><%- nUsers %></td>
+	</tr>
+	<tr>
+		<td>{{.I "User events" }}</td>
+		<td><%- model.get('events').length %></td>
+	</tr>
+	<tr>
+		<td>{{.I "Hours" }}</td>
+		<td><%- hoursMinutes %></td>
+	</tr>
+</table>
+<table class="table table-condensed">
+	<caption>{{.I "Unattested"}}</caption>
+	<tr>
+		<td>{{.I "New unattested events" }}</td>
+		<td><%- model.get('missing').length %></td>
+	</tr>
+	<tr>
+		<td>{{.I "Events changed since attestation" }}</td>
+		<td><%- model.get('changed').length %></td>
+	</tr>
+	<tr>
+		<td>{{.I "Events removed since attestation" }}</td>
+		<td><%- model.get('removed').length %></td>
+	</tr>
+</table>
+<a class="btn btn-mini download-report" target="_blank" href="data:<%- report_mime_type %>,<%- encodeURIComponent(report_content) %>">{{.I "Download" }}</a>

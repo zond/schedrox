@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+			<a class="navbar-brand" class="navigate" href="/">Schedrox / <%= title %></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+				<li<%= active == 'events/mine' ? ' class="active"' : '' %>><a class="navigate" href="/events/mine">{{.I "My events" }}</a></li>
+				<li<%= active == 'events/open' ? ' class="active"' : '' %>><a class="navigate" href="/events/open">{{.I "Open events" }}</a></li>
+				<% if (filters.length > 0) { %>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= active_filter.get('name') %><span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a class="filter_link" data-filter-id="_all_" href="#">{{.I "All" }}</a></li>
+					  <% for (i = 0; i < filters.length; i++) { %>
+						<li><a class="filter_link" data-filter-id="<%= filters.at(i).get('id') %>" href="#"><%= filters.at(i).get('name') %></a></li>
+						<% } %>
+					</ul>
+				</li>
+				<% } %>
+				<% if (domains.length > 1) { %>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= domain.get('name') %><span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					  <% for (i = 0; i < domains.length; i++) { %>
+						<li><a class="domain_link" data-domain-id="<%= domains[i].id %>" href="#"><%= domains[i].name %></a></li>
+						<% } %>
+					</ul>
+				</li>
+				<% } %>
+				<li><a href="/logout/redirect">Logout</a></li>
+			</ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

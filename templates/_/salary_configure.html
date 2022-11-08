@@ -1,0 +1,200 @@
+<div class="container-fluid">
+	<div class="margin-above row-fluid">
+		<div class="span6">
+			<label>
+				{{.I "Salary period" }}
+			</label>
+		</div>
+		<div class="span6">
+			<div class="btn-group">
+				<a class="btn btn-mini dropdown-toggle<%= write_auth ? '' : ' disabled' %>" data-toggle="dropdown" href="#">
+					<%- {{.I "salary_periods"}}[model.get('salary_period') || 'monthly'] %>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+					<a href="#" data-period-type="monthly" class="available-period-type">{{.I "Monthly" }}</a>
+					</li>
+					<li>
+					<a href="#" data-period-type="weekly" class="available-period-type">{{.I "Weekly" }}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="domain_salary_breakpoint">
+				{{.I "Breakpoint" }}
+			</label>
+		</div>
+		<div class="span6">
+			<% if (model.get('salary_period') == 'weekly') { %>
+			<div class="btn-group">
+				<a class="btn btn-mini dropdown-toggle<%= write_auth ? '' : ' disabled' %>" data-toggle="dropdown" href="#">
+					<%- {{.I "day_names"}}[model.get('salary_breakpoint')] %>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<% for (var i = 0; i < 7; i++) { %>
+					<li>
+					<a href="#" data-salary-breakpoint="<%- (i + {{.I "firstDOW" }}) % 7 %>" class="available-salary-breakpoint"><%- {{.I "day_names" }}[(i + {{.I "firstDOW" }}) % 7] %></a>
+					</li>
+					<% } %>
+				</ul>
+			</div>
+			<% } else { %>
+			<input type="number" id="domain_salary_breakpoint" value="<%- model.get('salary_breakpoint') || '1' %>"<%- write_auth ? "" : " disabled" %>>
+			<% } %>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="domain_salary_report_hours_min_minutes">
+				{{.I "Minimum reported minutes" }}
+			</label>
+		</div>
+		<div class="span6">
+			<input id="domain_salary_report_hours_min_minutes" type="number"<%= write_auth ? "" : ' disabled="disabled"' %> value="<%- model.get('salary_report_hours_min_minutes') %>">
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<table class="table table-condensed table-striped" id="salary_user_properties_list">
+				<caption>{{.I "Salary module user properties"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Name" }}
+					</th>
+					<th class="table-info">
+						{{.I "Type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Options" }}
+					</th>
+					<th class="table-info">
+						{{.I "Delete" }}
+					</th>
+				</tr>
+			</table>
+			<% if (write_auth) { %>
+			<input id="new_salary_user_property" type="text" placeholder="{{.I "New property" }}">
+			<% } %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<table class="table table-condensed table-striped" id="salary_participant_type_properties_list">
+				<caption>{{.I "Salary module participant type properties"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Name" }}
+					</th>
+					<th class="table-info">
+						{{.I "Type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Options" }}
+					</th>
+					<th class="table-info">
+						{{.I "Delete" }}
+					</th>
+				</tr>
+			</table>
+			<% if (write_auth) { %>
+			<input id="new_salary_participant_type_property" type="text" placeholder="{{.I "New property" }}">
+			<% } %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<table class="table table-condensed table-striped" id="salary_event_type_properties_list">
+				<caption>{{.I "Salary module event type properties"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Name" }}
+					</th>
+					<th class="table-info">
+						{{.I "Type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Options" }}
+					</th>
+					<th class="table-info">
+						{{.I "Delete" }}
+					</th>
+				</tr>
+			</table>
+			<% if (write_auth) { %>
+			<input id="new_salary_event_type_property" type="text" placeholder="{{.I "New property" }}">
+			<% } %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<table class="table table-condensed table-striped" id="salary_event_kind_properties_list">
+				<caption>{{.I "Salary module event kind properties"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Name" }}
+					</th>
+					<th class="table-info">
+						{{.I "Type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Options" }}
+					</th>
+					<th class="table-info">
+						{{.I "Delete" }}
+					</th>
+				</tr>
+			</table>
+			<% if (write_auth) { %>
+			<input id="new_salary_event_kind_property" type="text" placeholder="{{.I "New property" }}">
+			<% } %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<table class="table table-condensed table-striped" id="salary_location_properties_list">
+				<caption>{{.I "Salary module location properties"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Name" }}
+					</th>
+					<th class="table-info">
+						{{.I "Type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Options" }}
+					</th>
+					<th class="table-info">
+						{{.I "Delete" }}
+					</th>
+				</tr>
+			</table>
+			<% if (write_auth) { %>
+			<input id="new_salary_location_property" type="text" placeholder="{{.I "New property" }}">
+			<% } %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<h4>{{.I "Code" }}</h4>
+		</div>
+		<div class="span6">
+			<a href="/editor?domain=<%= app.getDomain().get('id') %>" target="_blank" class="btn btn-mini">{{.I "Edit" }}</a>
+			<a href="/salary/{{.Version}}/code.js?domain=<%= app.getDomain().get('id') %>" target="_blank" class="btn btn-mini">{{.I "Download" }}</a>
+			<form class="upload-salary" action="/salary/code.js?domain=<%= app.getDomain().get('id') %>" enctype="multipart/form-data" method="post">
+				<button id="upload_code" class="btn btn-mini">{{.I "Upload" }}</button>
+				<input type="file" name="datafile" size="40">
+			</form>
+		</div>
+	</div>
+</div>

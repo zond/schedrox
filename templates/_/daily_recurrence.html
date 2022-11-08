@@ -1,0 +1,7 @@
+<div class="span3">
+</div>
+<div class="span3">
+  {{.I "Every (n days)" }}
+  <input type="number" class="recurring-n-days" value="<%- n_days %>"<%- write_auth ? '' : ' disabled="disabled"' %>>
+  {{.I "(Every n) days" }}
+</div>

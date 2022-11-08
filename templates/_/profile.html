@@ -1,0 +1,234 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<% if (app.hasAuth({auth_type: 'Users'})) { %>
+		<div class="span6">
+			<a href="/users/<%- model.get('id') %>" class="view-user-link" data-id="<%- model.get('id') %>">{{.I "See the system data for this user" }}</a>
+		</div>
+		<% } %>
+		<% if (gravatar_data.missing_gravatar_profile) { %>
+		<%   if (model.get('id') == app.user.get('id')) { %>
+		<div class="span6">
+			{{.I "You don't seem to have a Gravatar profile." }} <a href="https://www.gravatar.com/site/signup/<%- encodeURIComponent(model.get('email')) %>">{{.I "Go to Gravatar to create one!" }}</a>
+		</div>
+		<%   } else { %>
+		<div class="span6">
+			{{.I "There is no Gravatar profile for this user." }}
+		</div>
+		<%   } %>
+		<% } else if (gravatar_data.has_gravatar_profile) { %>
+		<%   if (model.get('id') == app.user.get('id')) { %>
+		<div class="span6">
+			<a href="<%- model.gravatarProfileURL() %>">{{.I "Go to Gravatar to edit your profile." }}</a>
+		</div>
+		<%   } %>
+		<% } %>
+	</div>
+	<div class="row-fluid">
+		<div class="span2">
+			<img class="profile-thumbnail" src="<%- model.gravatarImageURL({s: 140}) %>">
+		</div>
+		<% var sysName = (model.get('given_name') != null && model.get('family_name') != null) ? "{{.I "name_order" }}".format(model.get('given_name'), model.get('family_name')) : null; %>
+		<% if (!gravatar_data.has_gravatar_profile && sysName != null) { %>
+		<div class="span3">
+			<dl>
+				<dt>{{.I "Name" }}</dt>
+				<dd><%- sysName %></dd>
+			</dl>
+		</div>
+		<% } else if (gravatar_data.has_gravatar_profile) { %>
+		<%   var d = gravatar_data.entry[0]; %>
+		<div class="span3">
+			<dl>
+				<dt>{{.I "Name" }}</dt>
+				<% if (d.name && d.name.givenName && d.name.familyName) { %>
+				<%   var gravName = (d.name.givenName != null && d.name.familyName != null) ? "{{.I "name_order" }}".format(d.name.givenName, d.name.familyName) : null %>
+				<%   if (gravName != null && (gravName == sysName || sysName == null)) { %>
+				<dd><%- gravName %></dd>
+				<%   } else if (gravName != null && sysName != null && gravName != sysName) { %>
+				<dd><%- sysName %> (<%- gravName %>)</dd>
+				<%   } %>
+				<% } else if (sysName != null) {%>
+				<dd><%- sysName %></dd>
+				<% } %>
+				<% if (d.currentLocation) { %>
+				<dt>{{.I "Location" }}</dt>
+				<dd><%- d.currentLocation %></dd>
+				<% } %>
+				<% if (d.aboutMe) { %>
+				<dt>{{.I "About me" }}</dt>
+				<dd><%- d.aboutMe %></dd>
+				<% } %>
+			</dl>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<%   if (d.phoneNumbers) { %>
+		<div class="span3">
+			<table class="table table-condensed">
+				<caption>{{.I "Phone numbers" }}</caption>
+				<tr>
+					<th class="table-info">{{.I "Type" }}</th>
+					<th class="table-info">{{.I "Number" }}</th>
+				</tr>
+				<%   for (var i = 0; i < d.phoneNumbers.length; i++) { %>
+				<tr>
+					<td><%- d.phoneNumbers[i].type %></td>
+					<td><%- d.phoneNumbers[i].value %></td>
+				</tr>
+				<%   } %>
+			</table>
+		</div>
+		<%   } %>
+		<%   if (d.emails) { %>
+		<div class="span3">
+			<table class="table table-condensed">
+				<caption>{{.I "Email" }}</caption>
+				<%   for (var i = 0; i < d.emails.length; i++) { %>
+				<tr>
+					<td><%- d.emails[i].value %></td>
+				</tr>
+				<%   } %>
+			</table>
+		</div>
+		<%   } %>
+		<%   if (d.ims) { %>
+		<div class="span3">
+			<table class="table table-condensed">
+				<caption>{{.I "IMs" }}</caption>
+				<tr>
+					<th class="table-info">{{.I "Type" }}</th>
+					<th class="table-info">{{.I "Id" }}</th>
+				</tr>
+				<%   for (var i = 0; i < d.ims.length; i++) { %>
+				<tr>
+					<td><%- d.ims[i].type %></td>
+					<td><%- d.ims[i].value %></td>
+				</tr>
+				<%   } %>
+			</table>
+		</div>
+		<%   } %>
+		<% } %>
+	</div>
+	<% if (model.get('id') == app.user.get('id')) { %>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="user_mute_event_notifications">{{.I "Disable notifications for your events"}}</label>
+		</div>
+		<div class="span6">
+			<input type="checkbox" id="user_mute_event_notifications"<%- model.get('mute_event_notifications') ? ' checked="checked"' : '' %>>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="user_background_color">{{.I "Background color"}}</label>
+		</div>
+		<div class="span6">
+			<div class="input-append color colorpicker" data-color="<%- background_color %>" data-color-format="hex">
+				<input id="user_background_color" type="text" value="<%- model.get('background_color') %>" >
+				<span class="add-on"><i style="background-color: <%- background_color %>"></i></span>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="user_calendar_days_back">{{.I "Past days to display in calendar"}}</label>
+		</div>
+		<div class="span6">
+			<input type="number" id="user_calendar_days_back" value="<%- model.get("calendar_days_back") %>">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="user_calendar_width">{{.I "Width of the calendar"}}</label>
+		</div>
+		<div class="span6">
+			<input type="number" id="user_calendar_width" value="<%- model.get("calendar_width") || "100" %>">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="user_calendar_height">{{.I "Height of the calendar"}}</label>
+		</div>
+		<div class="span6">
+			<input type="number" id="user_calendar_height" value="<%- model.get("calendar_height") || "100" %>">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="user_default_location">{{.I "Default location"}}</label>
+		</div>
+		<div class="span6">
+			<div class="btn-group">
+				<a id="available_locations_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+					<%- location.get('name') %>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" id="available_locations">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="user_default_event_kind">{{.I "Default event kind"}}</label>
+		</div>
+		<div class="span6">
+			<div class="btn-group">
+				<a id="available_event_kinds_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+					<%- event_kind.get('name') %>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" id="available_event_kinds">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="user_default_location">{{.I "Default event type"}}</label>
+		</div>
+		<div class="span6">
+			<div class="btn-group">
+				<a id="available_event_types_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+					<%- event_type.get('name') %>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" id="available_event_types">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="user_default_participant_type">{{.I "Default participant type"}}</label>
+		</div>
+		<div class="span6">
+			<div class="btn-group">
+				<a id="available_participant_types_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+					<%- participant_type.get('name') %>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" id="available_participant_types">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<table class="table table-condensed table-striped" id="custom_filters_list">
+				<caption>{{.I "Custom filters"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Name" }}
+					</th>
+					<th class="table-info">
+						{{.I "Delete" }}
+					</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<% } %>
+</div>

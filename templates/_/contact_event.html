@@ -1,0 +1,15 @@
+<td>
+	<a class="open-event" href="/calendar/<%= model.get('id') %>"><%- anyDateConverter.format(model.get('start')) %></a>
+</td>
+<td>
+	<a class="open-event" href="/calendar/<%= model.get('id') %>"><%- model.get('participant_type_name') %></a>
+</td>
+<td>
+	<a class="open-event" href="/calendar/<%= model.get('id') %>"><%- model.get('event_type_name') %></a>
+</td>
+<td>
+	<a class="open-event" href="/calendar/<%= model.get('id') %>"><%- model.get('location_name') %></a>
+</td>
+<td class="align-right">
+	<a class="open-event" href="/calendar/<%= model.get('id') %>"><%- duration %></a>
+</td>

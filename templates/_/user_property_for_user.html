@@ -1,0 +1,23 @@
+<td>
+  <%- model.get("name") %>
+</td>
+<td>
+	<% if (model.get('assigned_at') == null) { %>
+	-
+	<% } else { %>
+  <input class="user-property-assigned-at" id="user_property_<%- model.get('name').hash() %>_assigned_at" name="assigned_at" type="text" value="<%- anyDateConverter.format(model.get('assigned_at')) %>"<%- app.hasAuth({ auth_type: 'Users', write: true }) ? "" : " disabled" %>>
+	<% } %>
+</td>
+<td>
+	<% if (model.get('valid_until') == null) { %>
+	-
+	<% } else { %>
+  <input class="user-property-valid-until" id="user_property_<%- model.get('name').hash() %>_valid_until" name="valid_until" type="text" value="<%- anyDateConverter.format(model.get('valid_until')) %>"<%- app.hasAuth({ auth_type: 'Users', write: true }) ? "" : " disabled" %>>
+	<% } %>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Users', write: true })) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

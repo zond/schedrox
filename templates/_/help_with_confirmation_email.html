@@ -1,0 +1,164 @@
+<table class="table table-condensed table-striped">
+  <caption>{{.I "Symbols"}}</caption>
+  <tr>
+    <th class="table-info">
+      {{.I "Symbol" }}
+    </th>
+    <th class="table-info">
+      {{.I "Meaning" }}
+    </th>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.event.Information}}"}}
+    </td>
+    <td>
+      {{.I "Event information" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.event.Start.Format \"15:04\"}}"}}
+    </td>
+    <td>
+      {{.I "Event time formatted hh:mm" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.event.Start.Format \"01/02/06\"}}"}}
+    </td>
+    <td>
+      {{.I "Event date formatted mm/dd/yy" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+			{{"{{.event.Minutes}}"}}
+    </td>
+    <td>
+			{{.I "Event duration in minutes" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.event.Start.Format \"2006-01-02\"}}"}}
+    </td>
+    <td>
+      {{.I "Event date formatted yyyy-mm-dd" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.event.Title}}"}}
+    </td>
+    <td>
+      {{.I "Event title" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.event.EventType.StringID}}"}}
+    </td>
+    <td>
+      {{.I "Event type" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.event.EventKind.StringID}}"}}
+    </td>
+    <td>
+      {{.I "Event kind" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.participant.Name}}"}}
+    </td>
+    <td>
+      {{.I "Name of contact type participant" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.participant.GivenName}}"}}
+    </td>
+    <td>
+      {{.I "Given name of participant" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.participant.FamilyName}}"}}
+    </td>
+    <td>
+      {{.I "Family name of participant" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.participant.Multiple}}"}}
+    </td>
+    <td>
+      {{.I "Number of people this participant represents" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.participant.MobilePhone}}"}}
+    </td>
+    <td>
+      {{.I "Participant mobile phone number" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.event.Location.StringID}}"}}
+    </td>
+    <td>
+      {{.I "Location name" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.participant.Email}}"}}
+    </td>
+    <td>
+      {{.I "Participant email" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.participant.ParticipantType.StringID}}"}}
+    </td>
+    <td>
+      {{.I "Participant type" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.contact.Information}}"}}
+    </td>
+    <td>
+      {{.I "Contact information" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.contact.Reference}}"}}
+    </td>
+    <td>
+      {{.I "Contact reference" }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {{"{{.contact.OrganizationNumber}}"}}
+    </td>
+    <td>
+      {{.I "Contact organization number" }}
+    </td>
+  </tr>
+</table>
+

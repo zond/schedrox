@@ -1,0 +1,85 @@
+<td>
+	<img src="<%- model.gravatarImageURL({s: 20}) %>">
+</td>
+<td>
+	<% if (open_auth) { %>
+	<a href="<%- (model.get('user') != null) ? ('/users/' + model.get('user')) : ('/contacts/' + model.get('contact')) %>" class="open">
+		<% } %>
+		<% if (participant_type.get('is_contact')) { %>
+		<%- model.get('name') %>
+		<% } else { %>
+		<%- "{{.I "name_order" }}".format(model.get('given_name'), model.get('family_name')) %>
+		<% } %>
+		<% if (open_auth) { %>
+	</a>
+	<% } %>
+</td>
+<td>
+	<% if (open_auth) { %>
+	<a href="<%- (model.get('user') != null) ? ('/users/' + model.get('user')) : ('/contacts/' + model.get('contact')) %>" class="open">
+		<% } %>
+		<%- model.get('email') %>
+		<% if (open_auth) { %>
+	</a>
+	<% } %>
+</td>
+<td>
+	<% if (open_auth) { %>
+	<a href="<%- (model.get('user') != null) ? ('/users/' + model.get('user')) : ('/contacts/' + model.get('contact')) %>" class="open">
+		<% } %>
+		<%- model.get('mobile_phone') %>
+		<% if (open_auth) { %>
+	</a>
+	<% } %>
+</td>
+<td>
+	<% if (open_auth) { %>
+	<a href="<%- (model.get('user') != null) ? ('/users/' + model.get('user')) : ('/contacts/' + model.get('contact')) %>" class="open">
+		<% } %>
+		<% if (participant_type != null) { %>
+		<%- participant_type.get('name') %>
+		<% } else { %>
+		-
+		<% } %>
+		<% if (open_auth) { %>
+	</a>
+	<% } %>
+</td>
+<% if (event.get('start').getTime() <= (new Date().getTime() + (6 * 60 * 60 * 1000))) { %>
+<td>
+	<% if (write_auth) { %>
+	<button type="button" class="participant-defaulted btn btn-mini"><%- model.get('defaulted') ? '{{.I "Yes" }}' : '{{.I "No" }}' %></button>
+	<% } else { %>
+	<%- model.get('defaulted') ? '{{.I "Yes" }}' : '{{.I "No" }}' %>
+	<% } %>
+</td>
+<% } %>
+<% if (model.get('user') == null) { %>
+<td>
+	<input<%- write_auth ? '' : ' disabled="disabled"' %> type="number" class="participant-multiple" value="<%- model.get("multiple") %>">
+</td>
+<td>
+	<% if (event_type != null && write_auth) { %>
+	  <% if (event_type_has_confirmation_email) { %>
+	<button type="button" class="send-confirmation btn btn-mini"><%- '{{.I "{0} sent" }}'.format(model.get('confirmations') || 0) %></button>
+	  <% } else { %>
+	<button type="button" class="btn btn-mini disabled"><%- '{{.I "Unconfigured" }}'.format(model.get('confirmations') || 0) %></button>
+	  <% } %>
+	<% } else { %>
+	<%- '{{.I "{0} sent" }}'.format(model.get('confirmations') || 0) %>
+	<% } %>
+</td>
+<td>
+	<% if (write_auth) { %>
+	<button type="button" class="participant-paid btn btn-mini"><%- model.get('paid') ? '{{.I "Yes" }}' : '{{.I "No" }}' %></button>
+	<% } else { %>
+	<%- model.get('paid') ? '{{.I "Yes" }}' : '{{.I "No" }}' %>
+	<% } %>
+</td>
+<% } %>
+<td>
+	<% if (write_auth) { %>
+	<button type="button" class="close">×</button>
+	<% } %>
+</td>
+

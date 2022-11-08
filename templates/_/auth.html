@@ -1,0 +1,70 @@
+<td>
+  <label>
+    <%- model.get('translation') %>
+    <% if (type.has_role) { %>
+    <div class="btn-group">
+      <a class="btn btn-mini dropdown-toggle<%- app.hasAuth({ auth_type: 'Roles', write: true }) ? "" : " disabled" %>" data-toggle="dropdown" href="#">
+	<%- role_name %>
+	<span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" id="available_roles">
+      </ul>
+    </div>
+    <% } %>
+    <% if (type.has_location) { %>
+    <div class="btn-group">
+      <a class="btn btn-mini dropdown-toggle<%- app.hasAuth({ auth_type: 'Roles', write: true }) ? "" : " disabled" %>" data-toggle="dropdown" href="#">
+	<%- location_name %>
+	<span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" id="available_locations">
+      </ul>
+    </div>
+    <% } %>
+    <% if (type.has_event_kind) { %>
+    <div class="btn-group">
+      <a class="btn btn-mini dropdown-toggle<%- app.hasAuth({ auth_type: 'Roles', write: true }) ? "" : " disabled" %>" data-toggle="dropdown" href="#">
+	<%- event_kind_name %>
+	<span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" id="available_event_kinds">
+      </ul>
+    </div>
+    <% } %>
+    <% if (type.has_event_type) { %>
+    <div class="btn-group">
+      <a class="btn btn-mini dropdown-toggle<%- app.hasAuth({ auth_type: 'Roles', write: true }) ? "" : " disabled" %>" data-toggle="dropdown" href="#">
+	<%- event_type_name %>
+	<span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" id="available_event_types">
+      </ul>
+    </div>
+    <% } %>
+    <% if (type.has_participant_type) { %>
+    <div class="btn-group">
+      <a class="btn btn-mini dropdown-toggle<%- app.hasAuth({ auth_type: 'Roles', write: true }) ? "" : " disabled" %>" data-toggle="dropdown" href="#">
+	<%- participant_type_name %>
+	<span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" id="available_participant_types">
+      </ul>
+    </div>
+    <% } %>
+    <% if (type.has_write) { %>
+    <button class="btn btn-mini write-switch<%- app.hasAuth({ auth_type: 'Roles', write: true }) ? "" : " disabled" %>" type="button">
+      <% if (!!model.get('write')) { %>
+      {{.I "R/W" }}
+      <% } else { %>
+      {{.I "R/O" }}
+      <% } %>
+    </button>
+    <% } %>
+  </label>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Roles', write: true })) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

@@ -1,0 +1,21 @@
+Hello {{.participant.GivenName}},
+
+You have been removed from the following event:{{if .event.Title}}
+Title: {{.event.Title}}{{end}}
+Type: {{.event.EventType.StringID}}
+Kind: {{.event.EventKind.StringID}}
+Location: {{.event.Location.StringID}}
+Start: {{.event.Start.Format "15:04 01/02/06"}}
+End: {{.event.End.Format "15:04 01/02/06"}}
+
+{{if .event.Recurring}}
+Recurring until {{.event.RecurrenceEnd.Format "15:04 01/02/06"}}
+
+{{end}}{{if .event.Information}}Information:
+{{.event.Information}}
+
+{{end}}----
+This is an automatic notification sent by Schedrox.
+Go to http://{{.AppID}}.appspot.com/profile to turn them off.
+Go to http://{{.AppID}}.appspot.com/calendar/{{.event.Id.Encode}} to see the event.
+

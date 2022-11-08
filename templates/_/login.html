@@ -1,0 +1,20 @@
+<div id="login_info">
+	{{if .CustomerLogo}}<img class="customer-logo" src="{{.CustomerLogo}}">{{end}}
+  <% if (app.email != null) { %>
+  <p><%- "{{.I "You are logged in to Google as {0}"}}".format(app.email) %></p>
+  <a class="btn pushdown" href="{{.Data "logoutUrl"}}">{{.I "Logout"}}</a>
+  <%   if (app.user != null) { %>
+  <a class="btn pushdown" href="/">{{.I "Calendar"}}</a>
+  <%   } else { %>
+  <p>{{.I "You don't seem to have access to the system. Ask your administrator for access."}}</p>
+  <%   } %>
+  <% } else { %>
+  <a class="btn pushdown" href="{{.Data "loginUrl"}}">{{.I "Log in via Google"}}</a>
+  <% } %>
+	{{if .CustomerMessage}}<p style="width: 300%; margin-left: -100%;">{{.CustomerMessage}}</p>{{end}}
+</div>
+<div id="logos">
+  <a href="http://oort.se/"><img src="/img/oort.png"></a>
+  <a href="http://golang.org/"><img src="/img/powered_by_gophers.png"></a>
+  <a href="http://cloud.google.com/products/"><img src="/img/google_app_engine.png"></a>
+</div>

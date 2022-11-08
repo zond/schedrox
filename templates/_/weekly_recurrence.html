@@ -1,0 +1,25 @@
+<div class="span3">
+  <table>
+    <% var weekday_names = {{.I "weekday_names_js" }}; %>
+    <% var weekday_numbers = {{.I "weekday_numbers_js" }}; %>
+    <tr>
+      <% for (var i = 0; i < weekday_names.length; i++) { %>
+      <th>
+	<%- weekday_names[i] %>
+      </th>
+      <% } %>
+    </tr>
+    <tr>
+      <% for (var i = 0; i < weekday_numbers.length; i++) { %>
+      <td>
+	<input type="checkbox" class="recurring-on" data-recurring-on="<%- weekday_numbers[i] %>"<%- recurring_on[weekday_numbers[i]] ? ' checked="checked"' : '' %>>
+      </td>
+      <% } %>
+    </tr>
+  </table>
+</div>
+<div class="span3">
+  {{.I "Every (n weeks)" }}
+  <input type="number" class="recurring-n-weeks" value="<%- n_weeks %>"<%- write_auth ? '' : ' disabled="disabled"' %>>
+  {{.I "(Every n) weeks" }}
+</div>

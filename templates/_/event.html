@@ -1,0 +1,90 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<form id="event_details" class="form-horizontal">
+			<div class="span6">
+				<div class="control-group">
+					<label class="control-label" for="event_title">{{.I "Title"}}</label>
+					<div class="controls">
+						<input type="text" id="event_title" value="<%- model.get('title') %>"<%- write_auth ? "" : " disabled" %>>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="event_location">{{.I "Location"}}</label>
+					<div class="controls">
+						<div class="btn-group">
+							<a id="available_locations_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+								<%- location.get('name') %>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" id="available_locations">
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="event_kind">{{.I "Kind"}}</label>
+					<div class="controls">
+						<div class="btn-group">
+							<a id="available_kinds_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+								<%- event_kind.get('name') %>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" id="available_event_kinds">
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="event_type">{{.I "Type"}}</label>
+					<div class="controls">
+						<div class="btn-group">
+							<a id="available_types_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+								<%- event_type.get('name') %>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" id="available_event_types">
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="event_recurring">{{.I "Recurring"}}</label>
+					<div class="controls">
+						<input type="checkbox" id="event_recurring"<%= model.get('recurring') ? ' checked="checked"' : '' %><%- write_auth ? "" : " disabled" %>>
+					</div>
+				</div>
+			</div>
+			<div class="span6">
+				<div class="control-group">
+					<label class="control-label" for="event_start">{{.I "Start"}}</label>
+					<div class="controls">
+						<input id="event_start" name="start" type="text" value="<%- anyTimeConverterNoSeconds.format(model.get('start')) %>"<%- write_auth ? "" : " disabled" %>> <span id="start_day"></span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="event_end">{{.I "End"}}</label>
+					<div class="controls">
+						<input id="event_end" name="end" type="text" value="<%- anyTimeConverterNoSeconds.format(model.get('end')) %>"<%- write_auth ? "" : " disabled" %>> <span id="end_day"></span>
+					</div>
+				</div>
+				<div id="event_default_minutes_warning" class="hidden alert">
+					<%- '{{.I "{0} has a default length of {1} minutes." }}'.format(event_type.get('name'), event_type.get('default_minutes')) %>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="event_allDay">{{.I "All day"}}</label>
+					<div class="controls">
+						<input id="event_allDay" name="allDay" <%- model.get('allDay') ? 'checked="checked" ' : '' %>type="checkbox"<%- write_auth ? "" : " disabled" %>>
+					</div>
+				</div>
+				<label for="event_information">{{.I "Information"}}</label>
+				<textarea name="information" id="event_information"<%- write_auth ? "" : " disabled" %>><%- model.get('information') %></textarea>
+			</div>
+		</div>
+	</form>
+	<div class="row-fluid" id="recurrence_options">
+	</div>
+	<div id="participants">
+	</div>
+	<div id="changes">
+	</div>
+</div>

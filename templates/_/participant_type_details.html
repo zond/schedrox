@@ -1,0 +1,9 @@
+<div class="container-fluid">
+	<h3><%- model.get('name') %></h3>
+	<% if (window.app != null && app.getDomain() != null && app.getDomain().get('salary_mod') && (app.getDomain().get('salary_config').salary_participant_type_properties || []).length > 0) { %>
+	<hr/>
+	<div id="salary_properties">
+	</div>
+	<% } %>
+</div>
+

@@ -1,0 +1,8 @@
+Backup:
+
+appcfg.py -A s~schedev download_data --url=http://schedrox.appspot.com/_ah/remote_api --filename=schedrox_backup .
+
+Restore:
+
+appcfg.py -A s~schedev upload_data --url=http://schedev.appspot.com/_ah/remote_api --filename=schedrox_backup .
+

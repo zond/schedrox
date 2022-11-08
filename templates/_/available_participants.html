@@ -1,0 +1,24 @@
+<table class="table table-condensed table-striped" id="available_participant_list">
+  <caption>{{.I "Available participants"}}</caption>
+  <tr>
+    <th class="table-info">
+      {{.I "Type" }}
+    </th>
+    <th class="table-info">
+      {{.I "Assign" }}
+    </th>
+    <th class="table-info">
+      <% if (app.hasAnyAuth({ auth_type: 'Participants', location: event.get('location'), event_kind: event.get('event_kind'), event_type: event.get('event_type') })) { %>
+      <div class="btn-group">
+	<a id="available_extra_required_participant_types_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+	  {{.I "Add" }}
+	  <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="available_extra_required_participant_types">
+	</ul>
+      </div>
+      <% } %>
+    </th>
+  </tr>
+</table>
+

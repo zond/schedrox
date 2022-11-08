@@ -1,0 +1,36 @@
+runtime: go111
+instance_class: {{.InstanceClass}}
+automatic_scaling:
+  max_idle_instances: 1
+  max_concurrent_requests: 100
+
+
+
+inbound_services:
+- mail
+
+handlers:
+- url: /_ah/.*
+  script: auto
+  login: admin
+  secure: {{.Secure}}
+- url: /_ah/.*
+  script: auto
+  login: admin
+  secure: {{.Secure}}
+- url: /favicon.ico
+  static_files: img/favicon.ico
+  mime_type: image/png
+  upload: favicon\.ico
+  secure: {{.Secure}}
+- url: /editor
+  static_dir: editor
+  secure: {{.Secure}}
+- url: /img/(.*)
+  static_files: img/\1
+  upload: img/(.*)
+  secure: {{.Secure}}
+- url: /.*
+  script: auto
+  secure: {{.Secure}}
+

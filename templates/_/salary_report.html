@@ -1,0 +1,22 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">
+			<table class="table table-condensed">
+				<caption>{{.I "Salary period"}}</caption>
+				<tr>
+					<td><button class="btn btn-mini earlier" type="button">&#8656;</button></td>
+					<td><%- anyDateConverter.format(from) %></td>
+					<td>-</td>
+					<td><%- anyDateConverter.format(to) %></td>
+					<td><button class="btn btn-mini later" <%= hasForward ? '' : 'disabled="disabled" ' %>type="button">&#8658;</button></td>
+					<td><button class="btn btn-mini fetch" type="button">{{.I "Fetch" }}</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6" id="report_overview">
+		</div>
+	</div>
+</div>
+

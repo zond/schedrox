@@ -1,0 +1,41 @@
+Hello {{.participant.GivenName}},
+
+The following event, in which you are participating as {{.participant.ParticipantType.StringID}}, has been updated from
+
+----{{if .old_event.Title}}
+Title: {{.old_event.Title}}{{end}}
+Type: {{.old_event.EventType.StringID}}
+Kind: {{.old_event.EventKind.StringID}}
+Location: {{.old_event.Location.StringID}}
+Start: {{.old_event.Start.Format "15:04 01/02/06"}}
+End: {{.old_event.End.Format "15:04 01/02/06"}}
+
+{{if .old_event.Recurring}}Recurring until {{.old_event.RecurrenceEnd.Format "15:04 01/02/06"}}
+
+{{end}}{{if .old_event.Information}}Information:
+{{.old_event.Information}}
+
+{{end}}----
+
+to
+
+----{{if .new_event.Title}}
+Title: {{.new_event.Title}}{{end}}
+Type: {{.new_event.EventType.StringID}}
+Kind: {{.new_event.EventKind.StringID}}
+Location: {{.new_event.Location.StringID}}
+Start: {{.new_event.Start.Format "15:04 01/02/06"}}
+End: {{.new_event.End.Format "15:04 01/02/06"}}
+
+{{if .new_event.Recurring}}Recurring until {{.new_event.RecurrenceEnd.Format "15:04 01/02/06"}}
+
+{{end}}{{if .new_event.Information}}Information:
+{{.new_event.Information}}
+
+{{end}}----
+
+----
+This is an automatic notification sent by Schedrox.
+Go to http://{{.AppID}}.appspot.com/profile to turn them off.
+Go to http://{{.AppID}}.appspot.com/calendar/{{.event.Id.Encode}} to see the event.
+

@@ -1,0 +1,101 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span6">
+			<form class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="contact_name">{{.I "Name"}}</label>
+					<div class="controls">
+						<input id="contact_name" type="text" value="<%- model.get('name') %>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="contact_contact_given_name">{{.I "Contact person given name"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_contact_given_name" type="text" value="<%- model.get('contact_given_name') %>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="contact_contact_family_name">{{.I "Contact person family name"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_contact_family_name" type="text" value="<%- model.get('contact_family_name') %>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="contact_email">{{.I "Email"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_email" required type="email" value="<%- model.get('email') %>">
+						<% if (model.get('email_bounce') != null && model.get('email_bounce') != '') { %>
+						<div class="alert">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<a href="/<%- app.getDomain().get('id') %>/contacts/<%- model.get('id') %>/bounce_message" target="_blank" class="btn btn-mini">{{.I "View email error message" }}</a>
+							<button id="clear_email_bounce" class="btn btn-mini">{{.I "Clear email error message" }}</button>
+						</div>
+						<% } %>
+						<% if (model.errors && model.errors.email) { %>
+						<div class="alert">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<%- model.errors.email %>
+						</div>
+						<% } %>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="contact_mobile_phone">{{.I "Mobile phone"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_mobile_phone" type="text" value="<%- model.get('mobile_phone') %>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="contact_billing_address_line_1">{{.I "Billing address"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_billing_address_line_1" type="text" value="<%- model.get('billing_address_line_1') %>">
+					</div>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_billing_address_line_2" type="text" value="<%- model.get('billing_address_line_2') %>">
+					</div>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_billing_address_line_3" type="text" value="<%- model.get('billing_address_line_3') %>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="contact_address_line_1">{{.I "Address"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_address_line_1" type="text" value="<%- model.get('address_line_1') %>">
+					</div>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_address_line_2" type="text" value="<%- model.get('address_line_2') %>">
+					</div>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_address_line_3" type="text" value="<%- model.get('address_line_3') %>">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="span6">
+			<form class="form-horizontal">
+				<label for="contact_information">{{.I "Information"}}</label>
+				<textarea name="information" id="contact_information"<%- write_auth ? "" : " disabled" %>><%- model.get('information') %></textarea>
+				<hr/>
+				<div class="control-group">
+					<label class="control-label" for="contact_reference">{{.I "Reference"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_reference" type="text" value="<%- model.get('reference') %>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="contact_organization_number">{{.I "Organization number"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="contact_organization_number" type="text" value="<%- model.get('organization_number') %>">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<% if (app.hasAnyAuth({ auth_type: 'Events' })) { %>
+	<div class="row-fluid">
+		<div class="span6">
+			<a href="/contacts/<%= model.get('id') %>" id="contact_events">{{.I "Events" }}</a>
+		</div>
+	</div>
+	<% } %>
+</div>

@@ -1,0 +1,21 @@
+<table class="table table-condensed table-striped" id="auth_list">
+  <caption>{{.I "Authorizations"}}</caption>
+  <tr>
+    <th class="table-info">
+      {{.I "Description" }}
+    </th>
+    <th class="table-info">
+      {{.I "Delete" }}
+    </th>
+  </tr>
+</table>
+<% if (app.hasAuth({ auth_type: 'Roles', write: true })) { %>
+<div class="btn-group">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    {{.I "New authorization" }}
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="available_auth_types">
+  </ul>
+</div>
+<% } %>

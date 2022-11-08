@@ -1,0 +1,21 @@
+<td>
+  <a href="/contacts/<%- model.get('id') %>" class="open" data-contact-id="<%- model.get("id") %>"><img src="<%- model.gravatarImageURL({s: 20}) %>"></a>
+</td>
+<td>
+  <a href="/contacts/<%- model.get('id') %>" class="open" data-contact-id="<%- model.get("id") %>"><%- model.get('name') %></a>
+</td>
+<td>
+  <a href="/contacts/<%- model.get('id') %>" class="open" data-contact-id="<%- model.get("id") %>"><%- model.contactName() %></a>
+</td>
+<td>
+  <a href="/contacts/<%- model.get('id') %>" class="open" data-contact-id="<%- model.get("id") %>"><%- model.get("email") %></a>
+</td>
+<td>
+  <a href="/contacts/<%- model.get('id') %>" class="open" data-contact-id="<%- model.get("id") %>"><%- model.get("mobile_phone") %></a>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Contacts', write: true })) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

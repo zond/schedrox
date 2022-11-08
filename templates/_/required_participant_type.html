@@ -1,0 +1,51 @@
+<td>
+	<% if (participant_type != null) { %>
+	<%- participant_type.get('name') %>
+	<% } else { %>
+	-
+	<% } %>
+</td>
+<td>
+	<% if (per_type == null) { %>
+	<input<%- app.hasAuth({ auth_type: 'Event types', write: true }) ? '' : ' disabled="disabled"' %> data-type-id="<%- model.get('id') %>" type="number" class="participant-type-min" value="<%- model.get("min") %>">
+	-
+	<input<%- app.hasAuth({ auth_type: 'Event types', write: true }) ? '' : ' disabled="disabled"' %> data-type-id="<%- model.get('id') %>" type="number" class="participant-type-max" value="<%- model.get("max") %>">
+	per 
+	<%   if (app.hasAuth({ auth_type: 'Event types', write: true })) { %>
+	<div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			{{.I "Event" }}
+			<span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu available-event-participant-types">
+		</ul>
+	</div>
+	<%   } else { %>
+	{{.I "Event" }}
+	<%   } %>
+	<% } else { %>
+	1 / 
+	<input<%- app.hasAuth({ auth_type: 'Event types', write: true }) ? '' : ' disabled="disabled"' %> data-type-id="<%- model.get('id') %>" type="number" class="participant-type-per-num" value="<%- model.get("per_num") %>">
+	<%   if (app.hasAuth({ auth_type: 'Event types', write: true })) { %>
+	<div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			<%- per_type.get('name') %>
+			<span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu available-event-participant-types">
+		</ul>
+	</div>
+	<%   } else { %>
+	<%-    per_type.get('name') %>
+	<%   } %>
+	-
+	<input<%- app.hasAuth({ auth_type: 'Event types', write: true }) ? '' : ' disabled="disabled"' %> data-type-id="<%- model.get('id') %>" type="number" class="participant-type-offset" value="<%- model.get("min") %>">
+	<a href="#" class="per-tooltip">?</a>
+	<% } %>
+</td>
+<td>
+	<% if (app.hasAuth({ auth_type: 'Event types', write: true })) { %>
+	<button type="button" class="close">×</button>
+	<% } %>
+</td>
+

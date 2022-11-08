@@ -1,0 +1,82 @@
+<div id="participant_alerts">
+</div>
+<% if (has_user_participants) { %>
+<hr/>
+<div class="row-fluid">
+	<div class="span12">
+		<table class="table table-condensed table-striped" id="user_participant_list">
+			<caption>{{.I "Users"}}</caption>
+			<tr>
+				<th></th>
+				<th class="table-info">
+					{{.I "Name" }}
+				</th>
+				<th class="table-info">
+					{{.I "Email" }}
+				</th>
+				<th class="table-info">
+					{{.I "Mobile phone" }}
+				</th>
+				<th class="table-info">
+					{{.I "Type" }}
+				</th>
+				<% if (event.get('start').getTime() <= (new Date().getTime() + 6 * 60 * 60 * 1000)) { %>
+				<th class="table-info">
+					{{.I "Defaulted" }}
+				</th>
+				<% } %>
+				<th class="table-info">
+					{{.I "Delete" }}
+				</th>
+			</tr>
+		</table>
+	</div>
+</div>
+<% } %>
+<% if (has_contact_participants) { %>
+<hr/>
+<div class="row-fluid">
+	<div class="span12">
+		<table class="table table-condensed table-striped" id="contact_participant_list">
+			<caption>{{.I "Contacts"}}</caption>
+			<tr>
+				<th></th>
+				<th class="table-info">
+					{{.I "Name" }}
+				</th>
+				<th class="table-info">
+					{{.I "Email" }}
+				</th>
+				<th class="table-info">
+					{{.I "Mobile phone" }}
+				</th>
+				<th class="table-info">
+					{{.I "Type" }}
+				</th>
+				<% if (event.get('start').getTime() <= (new Date().getTime() + 6 * 60 * 60 * 1000)) { %>
+				<th class="table-info">
+					{{.I "Defaulted" }}
+				</th>
+				<% } %>
+				<th class="table-info">
+					<%- event.get('contact_participants') %>/<%- event.get('required_contact_participants') %>-<%- event.get('allowed_contact_participants') %>
+				</th>
+				<th class="table-info">
+					{{.I "Confirm" }}
+				</th>
+				<th class="table-info">
+					{{.I "Paid" }}
+				</th>
+				<th class="table-info">
+					{{.I "Delete" }}
+				</th>
+			</tr>
+		</table>
+	</div>
+</div>
+<% } %>
+<hr/>
+<div class="row-fluid">
+	<div class="span12" id="available_participants_container">
+	</div>
+</div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head id="head">
+    <title>
+      SchedRox
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href="/css/{{.Version}}/all.css" rel="stylesheet" media="screen">
+    <script src="/js/{{.Version}}/all.js" type="text/javascript"></script>
+    <script src="/js/app.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="loader"></div>
+    <div class="container">
+      <div id="menu" class="navbar"></div>
+      <div id="content"></div>
+			{{if .IsMobile}}
+			<a class="to-mobile" href="/desktop/to-mobile">to mobile</a>
+			{{end}}
+    </div>
+  </body>
+</html>

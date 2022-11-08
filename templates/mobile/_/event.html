@@ -1,0 +1,77 @@
+  <div class="panel panel-default">
+		<a class="collapse-toggle" href="#collapse-<%= event.get('id') %>">
+			<div class="panel-heading">
+				<%= event.get('location_name') %>, <%= event.get('event_type_name') %>, <%- anyDayTimeConverterNoSeconds.format(event.get('start')) %>-<%- anyDayTimeConverterNoSeconds.format(event.get('end')) %>
+			</div>
+		</a>
+		<div id="collapse-<%= event.get('id') %>" class="panel-collapse<%- collapsed ? " collapse" : "" %>">
+      <div class="panel-body">
+				<table class="table-condensed table-bordered">
+					<% if (event.get('title') != '') { %>
+					<tr>
+						<td>{{.I "Title" }}</td>
+						<td><%- event.get('title') %></td>
+					</tr>
+					<% } %>
+					<% if (event.get('information') != '') { %>
+					<tr colspan="2">
+						<td>{{.I "Information" }}</td>
+						<td><%- event.get('information') %></td>
+					</tr>
+					<% } %>
+     			<% if (contacts.length > 0 ) { %>
+					  <tr><td colspan="3"><strong>{{.I "Contacts" }}</strong></td></tr>
+     				<% for (var i = 0; i < contacts.length; i++) { %>
+     				<tr>
+     					<td>
+     						<%- contacts[i].get('participant_type_name') %>
+     					</td>
+     					<td colspan="<%= contacts[i].get('multiple') > 1 ? "1" : "2" %>">
+     						<%- contacts[i].name() %>
+     					</td>
+     					<% if (contacts[i].get('multiple') > 1) { %>
+     					<td>
+     						<%- contacts[i].get('multiple') %>
+     					</td>
+     					<% } %>
+     				</tr>
+     				<% } %>
+     			<% } %>
+     			<% if (users.length > 0 ) { %>
+					  <tr><td colspan="3"><strong>{{.I "Users" }}</strong></td></tr>
+     				<% for (var i = 0; i < users.length; i++) { %>
+     				<tr>
+     					<td>
+     						<%- users[i].get('participant_type_name') %>
+     					</td>
+     					<td colspan="<%= users[i].get('multiple') > 1 ? "1" : "2" %>">
+     						<%- users[i].name() %>
+     					</td>
+     					<% if (users[i].get('multiple') > 1) { %>
+     					<td>
+     						<%- users[i].get('multiple') %>
+     					</td>
+     					<% } %>
+     				</tr>
+     				<% } %>
+     			<% } %>
+     			<% if (allowedTypes.length > 0) { %>
+					  <tr><td colspan="3"><strong>{{.I "Available participants" }}</strong></td></tr>
+     				<% for (var i = 0; i < allowedTypes.length; i++) { %>
+     				<tr>
+     					<td>
+     						<%- allowedTypes[i].get('name') %>
+     					</td>
+     					<td colspan="2">
+								<% if (isOpen) { %>
+     						<button type="button" data-participant-type="<%- allowedTypes[i].get('id') %>" data-participant-type-name="<%- allowedTypes[i].get('name') %>" class="attend-event btn btn-xs btn-default">{{.I "Attend" }}</button>
+								<% } %>
+     					</td>
+     				</tr>
+     				<% } %>
+     			<% } %>
+  			</table>
+      </div>
+    </div>
+  </div>
+

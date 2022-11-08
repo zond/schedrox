@@ -1,0 +1,42 @@
+<td>
+	<%- anyDateConverter.format(model.get('start')) %>
+</td>
+<td>
+	<%- model.get('event_type_name') %>
+</td>
+<td>
+	<%- model.get('location_name') %>
+</td>
+<td>
+	<%- contact.name %>
+</td>
+<td>
+	<%- contact.organization_number %>
+</td>
+<td>
+	<% var lines = _.filter([contact.billing_address_line_1, contact.billing_address_line_2, contact.billing_address_line_3], function(l) { return ('' + l).trim() != ''; }); %>
+	<% for (var i = 0; i < lines.length; i++) { %>
+	<%- lines[i] %>
+	<%   if (i < lines.length - 1) { %>
+	<br/>
+	<%   } %>
+	<% } %>
+</td>
+<td>
+	<%- model.get('participants')[0].multiple %>
+</td>
+<td>
+	<%- '{{.I "name_order" }}'.format(contact.contact_given_name, contact.contact_family_name) %>
+</td>
+<td>
+	<%- contact.reference %>
+</td>
+<td>
+	<%- model.get('information') %>
+</td>
+<% if (app.hasAuth({ auth_type: 'Participants', event_type: model.get('event_type'), event_kind: model.get('event_kind'), location: model.get('location'), participant_type: model.get('participants')[0].participant_type, write: true })) { %>
+<td class="table-info">
+	<input type="checkbox" class="participant-paid" <%= model.get('participants')[0].paid ? 'checked="checked" ' : '' %>data-participant-id="<%- model.get('participants')[0].id %>">
+</td>
+<% } %>
+

@@ -1,0 +1,24 @@
+<td>
+	<%- anyDateConverter.format(date) %> 
+</td>
+<td>
+	<%- {{.I "day_names" }}[date.getDay()] %>
+</td>
+<td>
+	<select tabindex="<%= tabindexer() %>" <%= finished ? 'disabled="disabled" ' : '' %>class="report-location report-hours-day-input"></select>
+</td>
+<td>
+	<select tabindex="<%= tabindexer() %>" <%= finished ? 'disabled="disabled" ' : '' %>class="report-event-type report-hours-day-input"></select>
+</td>
+<td>
+	<select tabindex="<%= tabindexer() %>" <%= finished ? 'disabled="disabled" ' : '' %>class="report-participant-type report-hours-day-input"></select>
+</td>
+<td>
+	<input tabindex="<%= tabindexer() %>" <%= finished ? 'disabled="disabled" ' : '' %>class="report-minutes report-hours-day-input"></input>
+</td>
+<td>
+	<input tabindex="<%= tabindexer() %>" <%= finished ? 'disabled="disabled" ' : '' %>class="report-information report-hours-day-information"></input>
+</td>
+<td>
+	<button tabindex="<%= tabindexer() %>" <%= finished ? 'disabled="disabled" ' : '' %>class="btn btn-mini report-add" disabled="disabled">{{.I "Create" }}</button>
+</td>

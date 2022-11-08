@@ -1,0 +1,15 @@
+<td>
+	<a href="/events/kinds/<%= model.get('id') %>" class="open-kind" data-event-kind-id="<%- model.get("id") %>"><%- model.get("name") %></a>
+</td>
+<td>
+  <div class="input-append color colorpicker" data-color="<%- col %>" data-color-format="hex">
+    <input type="text" value="<%- model.get('color') %>" >
+    <span class="add-on"><i style="background-color: <%- col %>"></i></span>
+  </div>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Event types', write: true })) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

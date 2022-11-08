@@ -1,0 +1,22 @@
+<table class="table table-condensed table-striped" id="role_list">
+  <caption>{{.I "Roles"}}</caption>
+  <tr>
+    <th class="table-info">
+      {{.I "Name" }}
+    </th>
+    <th class="table-info">
+      {{.I "Delete" }}
+    </th>
+  </tr>
+</table>
+<% if (app.hasAnyAuth({ auth_type: 'Roles', write: true })) { %>
+<div class="btn-group">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    {{.I "New role" }}
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" id="available_roles">
+  </ul>
+</div>
+<% } %>
+

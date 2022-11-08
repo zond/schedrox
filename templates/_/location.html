@@ -1,0 +1,15 @@
+<td>
+	<% if (hasProps) { %>
+	<a href="/locations/<%= model.get('id') %>" class="open-location">
+	<% } %>
+	<%- model.get("name") %>
+  <% if (hasProps) { %>
+  </a>
+	<% } %>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Domain', write: true })) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

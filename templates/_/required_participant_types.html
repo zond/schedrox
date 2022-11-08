@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <table class="table table-condensed table-striped" id="participant_type_list">
+	<caption>{{.I "Participant types"}}</caption>
+	<tr>
+	  <th class="table-info">
+	    {{.I "Name" }}
+	  </th>
+	  <th class="table-info">
+	    {{.I "Description" }}
+	  </th>
+	  <th class="table-info">
+	    {{.I "Delete" }}
+	  </th>
+	</tr>
+      </table>
+      <% if (app.hasAuth({ auth_type: 'Event types', write: true })) { %>
+      <div class="btn-group">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	  {{.I "New type" }}
+	  <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" id="available_participant_types">
+	</ul>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span6">
+			{{.I "Reporting finished" }}
+		</div>
+		<div class="span6">
+			<button class="btn btn-mini toggle-finished" type="button" <%= attested && finished ? 'disabled="disabled"' : '' %>><%= finished ? "{{.I "Yes" }}" : "{{.I "No" }}" %></button>
+		</div>
+	</div>
+	<hr/>
+	<div class="attest-row row-fluid">
+		<div class="span12">
+			<table class="table table-condensed table-striped" id="unattested_events">
+				<caption>{{.I "Unattested"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Date" }}
+					</th>
+					<th class="table-info">
+						{{.I "Participant type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Event type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Location" }}
+					</th>
+					<th class="table-info">
+						{{.I "Information" }}
+					</th>
+					<th class="align-right table-info">
+						{{.I "Hours" }}
+					</th>
+					<% if (deletable) { %>
+					<th>
+					</th>
+					<% } %>
+				</tr>
+				<% if (deletable) { %>
+				<tr id="create_new_report_container">
+					<td>
+						<input class="create_new_report_input create_new_report_date" id="create_new_report_date" type="text" value="<%- anyDateConverter.format(from) %>">
+					</td>
+					<td>
+						<select class="create_new_report_input create_new_report_participant_type"><option></option></select>
+					</td>
+					<td>
+						<select class="create_new_report_input create_new_report_event_type"><option></option></select>
+					</td>
+					<td>
+						<select class="create_new_report_input create_new_report_location"><option></option></select>
+					</td>
+					<td>
+						<input class="create_new_report_input create_new_report_information"></input>
+					</td>
+					<td class="align-right">
+						<input class="create_new_report_input create_new_report_minutes"></input>
+					</td>
+					<td>
+						<button disabled="disabled" class="btn btn-mini create_new_report">{{.I "Create" }}</button>
+					</td>
+				</tr>
+				<% } %>
+			</table>
+		</div>
+	</div>
+	<div class="attest-row row-fluid">
+		<div class="span12">
+			<button class="btn btn-mini attest">{{.I "Attest" }}</button>
+		</div>
+	</div>
+	<hr class="attest-row"/>
+	<div class="revert-row row-fluid">
+		<div class="span12">
+			<table class="table table-condensed table-striped" id="attested_events">
+				<caption>{{.I "Attested"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Date" }}
+					</th>
+					<th class="table-info">
+						{{.I "Attester" }}
+					</th>
+					<th class="table-info">
+						{{.I "Participant type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Event type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Location" }}
+					</th>
+					<th class="table-info">
+						{{.I "Information" }}
+					</th>
+					<th class="align-right table-info">
+						{{.I "Hours" }}
+					</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="revert-row row-fluid">
+		<div class="span12">
+			<button class="btn btn-mini revert">{{.I "Revert" }}</button>
+		</div>
+	</div>
+</div>

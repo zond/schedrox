@@ -1,0 +1,32 @@
+<td>
+	<a href="/events/types/<%= model.get('id') %>" class="open-type" data-event-type-id="<%- model.get("id") %>"><%- model.get("name") %></a>
+</td>
+<td>
+  <% if (write_auth) { %>
+  <div class="btn-group">
+    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+      <%- kind_name %>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" id="available_kinds">
+      <li>
+      <a href="#" data-kind-id="" class="available-event-kind">{{.I "None" }}</a>
+      </li>
+    </ul>
+  </div>
+  <% } else { %>
+  <%- kind_name %>
+  <% } %>
+</td>	
+<td>
+  <div class="input-append color colorpicker" data-color="<%- col %>" data-color-format="hex">
+    <input type="text" value="<%- model.get('color') %>" >
+    <span class="add-on"><i style="background-color: <%- col %>"></i></span>
+  </div>
+</td>
+<td>
+  <% if (write_auth) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

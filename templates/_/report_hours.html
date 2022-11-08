@@ -1,0 +1,63 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">
+			<table class="table table-condensed">
+				<caption>{{.I "Salary period"}}</caption>
+				<tr>
+					<td><button class="btn btn-mini earlier" type="button">&#8656;</button></td>
+					<td><%- anyDateConverter.format(from) %></td>
+					<td>-</td>
+					<td><%- anyDateConverter.format(to) %></td>
+					<td><button class="btn btn-mini later" type="button">&#8658;</button></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span3">
+			{{.I "Period reporting finished" }}
+		</div>
+		<div class="span3">
+			<input type="checkbox" id="period_finished" value="1"<%= finished ? ' checked="checked" disabled="disabled"' : '' %>>
+		</div>
+		<div class="span1">
+			{{.I "Sum" }}
+		</div>
+		<div class="total-sum span1">
+			0
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span10">
+			<table class="table table-condensed table-striped" id="days_list">
+				<caption>{{.I "Days"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Date" }}
+					</th>
+					<th class="table-info">
+						{{.I "Weekday" }}
+					</th>
+					<th class="table-info">
+						{{.I "Location" }}
+					</th>
+					<th class="table-info">
+						{{.I "Event type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Participant type" }}
+					</th>
+					<th class="table-info">
+						{{.I "Hours" }}
+					</th>
+					<th class="table-info">
+						{{.I "Information" }}
+					</th>
+					<th class="table-info">
+					</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+

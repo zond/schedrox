@@ -1,0 +1,24 @@
+<td>
+</td>
+<td>
+</td>
+<td>
+	<%- model.get('location_name') %>
+</td>
+<td>
+	<%- model.get('event_type_name') %>
+</td>
+<td>
+	<%- model.get('salary_attested_participant_type_name') %>
+</td>
+<td>
+	<%- hoursMinutesForDates(model.get('start'), model.get('end')) %>
+</td>
+<td>
+	<%- model.get('information') %>
+</td>
+<td>
+	<% if (model.get('salary_time_reported') && !finished) { %>
+	<button class="btn btn-mini report-remove">{{.I "Remove" }}</button>
+	<% } %>
+</td>

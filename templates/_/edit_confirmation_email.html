@@ -1,0 +1,19 @@
+<div class="row-fluid">
+  <div class="span12">
+    <% if (model.errors && model.errors.subject) { %>
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{.I "Invalid subject" }}</strong> <%- model.errors.subject %>
+    </div>
+    <% } %>
+    <label for="event_type_confirmation_email_subject_template">{{.I "Subject" }}</label><input type="text" value="<%- model.get('confirmation_email_subject_template') %>" id="event_type_confirmation_email_subject_template"<%- write_auth ? '' : ' disabled="disabled"' %>>
+    <% if (model.errors && model.errors.body) { %>
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{.I "Invalid body" }}</strong> <%- model.errors.body %>
+    </div>
+    <% } %>
+    <textarea<%- write_auth ? '' : ' disabled="disabled"' %> id="event_type_confirmation_email_body_template"><%- model.get('confirmation_email_body_template') %></textarea>
+  </div>
+</div>
+

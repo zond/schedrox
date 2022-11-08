@@ -1,0 +1,154 @@
+<div class="navbar-inner">
+  <a class="brand" href="/">SchedRox</a>
+  <ul class="nav">
+    <li class="<%- classes.calendar %>">
+    <a class="nav-link" href="/calendar">{{.I "Calendar"}}</a>
+    </li>
+
+    <% if (window.app != null && app.getDomain() != null && app.hasAuth({ auth_type: 'Users' })) { %>
+    <li class="<%- classes.users %>">
+    <a class="nav-link" href="/users">{{.I "Users"}}</a>
+    </li>
+    <% } %>
+    
+    <% if (window.app != null && app.getDomain() != null && app.hasAuth({ auth_type: 'Contacts' })) { %>
+    <li class="<%- classes.contacts %>">
+    <a class="nav-link" href="/contacts">{{.I "Contacts"}}</a>
+    </li>
+    <% } %>
+
+		<% if (window.app != null && app.getDomain() != null && (app.hasAuth({ auth_type: 'Event types' }) || (app.hasAnyAuth({ auth_type: 'Events' })) && app.hasAnyAuth({ auth_type: 'Participants' }))) { %>
+    <li class="dropdown <%- classes.events %>">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      {{.I "Events"}}<b class="caret"></b>
+    </a>
+    <ul role="menu" class="dropdown-menu">
+
+			<% if (app.hasAuth({ auth_type: 'Event types' })) { %>
+      <li>
+      <a class="nav-link" href="/events/types">{{.I "Types"}}</a>
+      </li>
+
+      <li>
+      <a class="nav-link" href="/events/participants">{{.I "Participants"}}</a>
+			</li>
+      <% } %>
+
+			<% if (app.hasAnyAuth({ auth_type: 'Events' }) && app.hasAnyAuth({ auth_type: 'Participants' })) { %>
+      <li>
+      <a class="nav-link" href="/events/reports">{{.I "Reports"}}</a>
+			</li>
+			<% } %>
+
+    </ul>
+    </li>
+    <% } %>
+
+		<% if (window.app != null && app.getDomain() != null && app.getDomain().get('salary_mod') && (app.hasAnyAuth({ auth_type: 'Salary report' }) || app.hasAnyAuth({ auth_type: 'Report hours' }) || app.hasAnyAuth({ auth_type: 'Salary configuration' }))) { %>
+    <li class="dropdown <%- classes.salaries %>">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      {{.I "Salaries"}}<b class="caret"></b>
+    </a>
+    <ul role="menu" class="dropdown-menu">
+
+			<% if (app.hasAnyAuth({ auth_type: 'Report hours' })) { %>
+      <li>
+      <a class="nav-link" href="/salaries/hours">{{.I "Hours"}}</a>
+			</li>
+			<% } %>
+
+			<% if (app.hasAnyAuth({ auth_type: 'Salary report' })) { %>
+      <li>
+      <a class="nav-link" href="/salaries/report">{{.I "Report"}}</a>
+			</li>
+			<% } %>
+
+			<% if (app.hasAnyAuth({ auth_type: 'Salary configuration' })) { %>
+      <li>
+      <a class="nav-link" href="/salaries/configuration">{{.I "Configuration"}}</a>
+			</li>
+			<% } %>
+
+    </ul>
+    </li>
+    <% } %>
+
+    <li class="dropdown <%- classes.settings %>">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      {{.I "Settings"}}<b class="caret"></b>
+    </a>
+    <ul role="menu" class="dropdown-menu">
+      <% if (app.user != null) { %>
+      <li>
+      <a class="nav-link" href="/profiles/<%- app.user.get('id') %>">{{.I "Profile"}}</a>
+      </li>
+      <% } %>
+
+      <% if (window.app != null && app.getDomain() != null && app.hasAnyAuth({ auth_type: 'Roles' })) { %>
+      <li>
+      <a class="nav-link" href="/settings/roles">{{.I "Roles"}}</a>
+      </li>
+      <% } %>
+
+      <% if (window.app != null && app.getDomain() != null && app.hasAuth({ auth_type: 'Domain' })) { %>
+      <li>
+      <a class="nav-link" href="/settings/domain">{{.I "Domain"}}</a>
+      </li>
+      <% } %>
+
+      <% if (window.app != null && app.isAdmin()) { %>
+      <li>
+      <a class="nav-link" href="/settings/global">{{.I "Global"}}</a>
+      </li>
+      <% } %>
+
+    </ul>
+    </li>
+		
+  </ul>
+
+  <% if (window.app != null && app.user != null) { %>
+  <ul class="nav pull-right">
+
+    <% if (model.get('domains') != null && model.get('domains').length > 0) { %>
+
+    <%   if (model.get('domains').length == 1) { %>
+    <li class="brand">
+    <%- model.get('domains')[0].name %>
+    </li>
+    <%   } else { %>
+    <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <span id="selected_domain"><%- model.get('domains')[0].name %></span><b class="caret"></b>
+    </a>
+    <ul role="menu" class="dropdown-menu">
+
+      <%   for (var i = 0; i < model.get('domains').length; i++) { %>
+      <li>
+      <a class="domain-link" data-id="<%- model.get('domains')[i].id %>" data-name="<%- model.get('domains')[i].name %>" href="#"><%- model.get('domains')[i].name %></a>
+      </li>
+      <%   } %>
+
+    </ul>
+    <%   } %>
+
+    <% } %>
+
+    <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <%- app.user.get('email') %><b class="caret"></b>
+    </a>
+    <ul role="menu" class="dropdown-menu">
+      <li>
+      <a class="nav-link" href="/profiles/<%- app.user.get('id') %>">{{.I "Profile"}}</a>
+      </li>
+      <li>
+      <a href="{{.Data "logoutUrl"}}">{{.I "Logout"}}</a>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <% } %>
+
+</div>
+

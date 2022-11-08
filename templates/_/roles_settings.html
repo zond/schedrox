@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+      <table class="table table-condensed table-striped" id="role_list">
+	<caption>{{.I "Roles"}}</caption>
+	<tr>
+	  <th class="table-info">
+	    {{.I "Name" }}
+	  </th>
+	  <th class="table-info">
+	    {{.I "Delete" }}
+	  </th>
+	</tr>
+      </table>
+      <% if (app.hasAuth({ auth_type: 'Roles', write: true })) { %>
+      <input id="new_role" type="text" placeholder="{{.I "New role" }}">
+      <% } %>
+    </div>
+  </div>
+</div>

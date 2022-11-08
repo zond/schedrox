@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+PRODID:-//Oort Cloud AB//SchedRox {{.version }}
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:CANCEL
+BEGIN:VEVENT
+DTSTART:{{.start.Format "20060102T150405Z" }}
+DTEND:{{.end.Format "20060102T150405Z" }}{{if .recurring}}
+RRULE:{{.rrule }}{{range .exdates}}
+EXDATE;VALUE=DATE:{{.Format "20060102"}}
+EXDATE:{{.Format "20060102T150405Z" }}{{end}}{{end}}
+DTSTAMP:{{.now.Format "20060102T150405Z" }}
+ORGANIZER;CN={{.organizer }}:mailto:{{.organizer }}
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE;CN={{.attendee }};X-NUM-GUESTS=0:mailto:{{.attendee }}
+UID:{{.id }}
+CREATED:{{.createdAt.Format "20060102T150405Z" }}
+DESCRIPTION:http://schedrox.appspot.com/calendar/
+LAST-MODIFIED:{{.updatedAt.Format "20060102T150405Z" }}
+LOCATION:{{.location }}
+SEQUENCE:{{.sequence }}
+STATUS:CANCELLED
+SUMMARY:{{.summary }}
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,47 @@
+<div class="row-fluid">
+  <div class="span8">
+    <table class="table table-condensed table-striped" id="contact_list">
+      <caption>{{.I "Contacts"}}</caption>
+      <tr>
+	<th></th>
+	<th class="table-info">
+	  {{.I "Name" }}
+	</th>
+	<th class="table-info">
+	  {{.I "Contact" }}
+	</th>
+	<th class="table-info">
+	  {{.I "Email" }}
+	</th>
+	<th class="table-info">
+	  {{.I "Mobile phone" }}
+	</th>
+	<th class="table-info">
+	  {{.I "Delete" }}
+	</th>
+      </tr>
+    </table>
+    <% if (app.hasAuth({ auth_type: 'Contacts', write: true })) { %>
+    <input id="new_contact" type="text" required placeholder="{{.I "New contact name" }}">
+    <% } %>
+  </div>
+</div>
+<% if (!isSearch) { %>
+<div class="row-fluid">
+  <div class="span6 pagination">
+		<ul>
+			<% if (page > 5) { %>
+      <li><a data-page="1" href="#">1</a></li>
+			<% } %>
+			<li<%= page < 2  ? ' class="disabled"' : '' %>><a data-page="<%- page - 1 %>" href="#">{{.I "Prev" }}</a></li>
+			<% for (var i = (page > 4 ? page - 4 : 1); i <= (pages - page > 4 ? page + 4 : pages); i++) { %>
+      <li<%= page == i ? ' class="active"' : '' %>><a data-page="<%- i %>" href="#"><%- i %></a></li>
+      <% } %>
+			<li<%= page >= pages ? ' class="disabled"' : '' %>><a data-page="<%- page + 1 %>" href="#">{{.I "Next"}}</a></li>
+			<% if (pages - page > 4) { %>
+			<li><a data-page="<%- pages %>" href="#"><%- pages %></a></li>
+			<% } %>
+    </ul>
+  </div>
+</div>
+<% } %>

@@ -1,0 +1,31 @@
+<td>
+	<%- anyDateConverter.format(model.get('start')) %>
+</td>
+<% if (show_attester) { %>
+<td>
+	<%- model.get('salary_attester_string') %>
+</td>
+<% } %>
+<td>
+	<%- model.get('salary_attested_participant_type_name') %>
+</td>
+<td>
+	<%- model.get('event_type_name') %>
+</td>
+<td>
+	<%- model.get('location_name') %>
+</td>
+<td>
+	<%- model.get('information') %>
+</td>
+<td class="align-right">
+	<%- duration %>
+</td>
+<% if (deleter != null) { %>
+<td>
+	<% if (typeof deleter == 'function') { %>
+	<button type="button" class="close">×</button>
+	<% } %>
+</td>
+<% } %>
+

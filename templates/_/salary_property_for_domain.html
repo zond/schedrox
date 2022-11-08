@@ -1,0 +1,32 @@
+<td>
+  <% if (app.hasAuth({ auth_type: 'Domain', write: true })) { %>
+	<input type="text" class="salary-property-name" value="<%- model.name %>">
+	<% } else { %>
+	<%- model.name %>
+	<% } %>
+</td>
+<td>
+	<% if (app.hasAuth({ auth_type: 'Domain', write: true })) { %>
+	<div class="btn-group">
+		<a id="available_locations_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+			<%- {{.I "salary_property_types" }}[model.type] %>
+			<span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+			<% for (var i = 0; i < salary_property_types.length; i++) { %>
+			<li><a href="#" data-salary-property-type="<%- salary_property_types[i] %>" class="available-salary-property-type"><%- {{.I "salary_property_types" }}[salary_property_types[i]] %></a></li>
+			<% } %>
+		</ul>
+	</div>
+	<% } else { %>
+	<%- {{.I "salary_property_types" }}[model.type] %>
+	<% } %>
+</td>
+<td class="salary-property-options">
+</td>
+<td>
+	<% if (write_auth) { %>
+	<button type="button" data-salary-property-name="<%- model.name %>" class="close">×</button>
+  <% } %>
+</td>
+

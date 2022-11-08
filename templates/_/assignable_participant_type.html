@@ -1,0 +1,20 @@
+<td>
+  <%- model.get('name') %>
+  <% if (participant_write_auth && is_extra) { %>
+  <a class="delete-required-participant" href="#">×</a>
+  <% } %>
+</td>
+<td class="search-col">
+  <input type="text" placeholder="{{.I "Search" }}" class="assign-participant"<%= participant_write_auth ? '' : ' disabled="disabled"' %>>
+	<span class="contact-links hidden">
+		<a class="email-list" href="">{{.I "Email" }}</a>
+		<a class="show-sms-list">{{.I "SMS" }}</a>
+		<input class="sms-list hidden" type="text" value="">
+	</span>
+</td>
+<td>
+  <% if (!model.get('is_contact')) { %>
+  <button class="attend btn btn-small"<%= !busy_meter.get('busy') && !in_event && app.hasAuth({ auth_type: 'Attend', location: event.get('location'), event_kind: event.get('event_kind'), event_type: event.get('event_type'), participant_type: model.get('id') }) ? '' : ' disabled="disabled"' %>>{{.I "(i will) Attend" }}</button>
+  <% } %>
+</td>
+

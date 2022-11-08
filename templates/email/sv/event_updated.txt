@@ -1,0 +1,41 @@
+Hej {{.participant.GivenName}},
+
+Följande händelse, i vilken du deltar som {{.participant.ParticipantType.StringID}}, har blivit uppdaterad från
+
+----{{if .old_event.Title}}
+Titel: {{.old_event.Title}}{{end}}
+Typ: {{.old_event.EventType.StringID}}
+Sort: {{.old_event.EventKind.StringID}}
+Plats: {{.old_event.Location.StringID}}
+Start: {{.old_event.Start.Format "15:04 01/02/06"}}
+Slut: {{.old_event.End.Format "15:04 01/02/06"}}
+
+{{if .old_event.Recurring}}Upprepas fram till {{.old_event.RecurrenceEnd.Format "15:04 01/02/06"}}
+
+{{end}}{{if .old_event.Information}}Information:
+{{.old_event.Information}}
+
+{{end}}----
+
+till
+
+----{{if .new_event.Title}}
+Titel: {{.new_event.Title}}{{end}}
+Typ: {{.new_event.EventType.StringID}}
+Sort: {{.new_event.EventKind.StringID}}
+Plats: {{.new_event.Location.StringID}}
+Start: {{.new_event.Start.Format "15:04 01/02/06"}}
+Slut: {{.new_event.End.Format "15:04 01/02/06"}}
+
+{{if .new_event.Recurring}}Upprepas fram till {{.new_event.RecurrenceEnd.Format "15:04 01/02/06"}}
+
+{{end}}{{if .new_event.Information}}Information:
+{{.new_event.Information}}
+
+{{end}}----
+
+----
+Detta är ett automatiskt meddelande skickat av Schedrox.
+Gå till http://{{.AppID}}.appspot.com/profile för att stänga av dem.
+Gå till http://{{.AppID}}.appspot.com/calendar/{{.event.Id.Encode}} för att se händelsen.
+

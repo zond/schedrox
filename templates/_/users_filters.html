@@ -1,0 +1,51 @@
+<div class="row-fluid">
+  <div class="span3">
+    <input type="text" placeholder="{{.I "Search" }}" value="<%- query %>" id="search_users">
+  </div>
+  <div class="span5">
+    <table class="table table-condensed table-striped" id="filter_list">
+      <caption>{{.I "Filters"}}</caption>
+      <tr>
+	<th class="table-info">
+	  {{.I "Type" }}
+	</th>
+	<th class="table-info">
+	  {{.I "Value" }}
+	</th>
+	<th class="table-info">
+	  <div class="btn-group">
+	    <a id="available_filter_types_dropdown" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+	      {{.I "Add" }}
+	      <span class="caret"></span>
+	    </a>
+	    <ul class="dropdown-menu" id="available_filter_types">
+	      <li>
+	      <a href="#" data-filter-name="{{.I "Role" }}" data-filter-type="role">{{.I "Role" }}</a>
+	      </li>
+	      <li>
+	      <a href="#" data-filter-name="{{.I "Not role" }}" data-filter-type="norole">{{.I "Not role" }}</a>
+	      </li>
+	      <li>
+	      <a href="#" data-filter-name="{{.I "Property" }}" data-filter-type="property">{{.I "Property" }}</a>
+	      </li>
+	      <li>
+	      <a href="#" data-filter-name="{{.I "Not property" }}" data-filter-type="noprop">{{.I "Not property" }}</a>
+	      </li>
+	      <li>
+	      <a href="#" data-filter-name="{{.I "Disabled" }}" data-filter-type="disabled">{{.I "Disabled" }}</a>
+	      </li>
+				<% if (window.app != null && app.getDomain() != null && app.getDomain().get('salary_mod') && app.hasAnyAuth({ auth_type: 'Attest' })) { %>
+	      <li>
+	      <a href="#" data-filter-name="{{.I "Unattested" }}" data-filter-type="unattested">{{.I "Unattested" }}</a>
+	      </li>
+	      <li>
+	      <a href="#" data-filter-name="{{.I "Attested" }}" data-filter-type="attested">{{.I "Attested" }}</a>
+	      </li>
+				<% } %>
+	    </ul>
+	  </div>
+	</th>
+      </tr>
+    </table>
+  </div>
+</div>

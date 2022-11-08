@@ -1,0 +1,26 @@
+<hr/>
+<div class="span2">
+  <div class="btn-group">
+    <a id="recurrence_type_dropdown" class="<%- write_auth ? "" : "disabled " %>btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+      <%- recurrence_view.name %>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" id="available_recurrence_types">
+      <li>
+      <a href="#" data-recurrence-type="DAY" class="available-recurrence-type">{{.I "Daily" }}</a>
+      </li>
+      <li>
+      <a href="#" data-recurrence-type="DOW" class="available-recurrence-type">{{.I "Weekly" }}</a>
+      </li>
+      <li>
+      <a href="#" data-recurrence-type="DOM" class="available-recurrence-type">{{.I "Monthly" }}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="recurrence_type_options">
+</div>
+<div class="span4">
+  {{.I "Until"}}
+  <input id="event_recurrence_end" name="end" type="text" value="<%- anyTimeConverter.format(model.get('recurrence_end') || model.get('end')) %>"<%- write_auth ? "" : " disabled" %>>
+</div>

@@ -1,0 +1,37 @@
+<div class="container-fluid">
+	<% if (window.app != null && app.getDomain() != null && app.hasAuth({ auth_type: 'Events' }) && app.hasAuth({ auth_type: 'Participants' })) { %>
+	<div class="row-fluid">
+		<div class="span6">
+			<a class="unpaid-events-link" href="/events/reports/unpaid">{{.I "Unpaid events" }}</a>
+		</div>
+	</div>
+	<% } %>
+	<% if (window.app != null && app.getDomain() != null && app.hasAuth({ auth_type: 'Events' }) && app.hasAuth({ auth_type: 'Participants' })) { %>
+	<div class="row-fluid">
+		<div class="span6">
+			<a class="changed-events-link" href="/events/reports/changed">{{.I "Changed events" }}</a>
+		</div>
+	</div>
+	<% } %>
+	<% if (window.app != null && app.getDomain() != null && app.hasAuth({ auth_type: 'Events' }) && app.hasAuth({ auth_type: 'Participants' }) && app.hasAuth({ auth_type: 'Contacts' })) { %>
+	<div class="row-fluid">
+		<div class="span6">
+			<a class="export-events-link" href="/events/reports/export">{{.I "Export events" }}</a>
+		</div>
+	</div>
+	<% } %>
+	<% if (window.app != null && app.getDomain() != null && app.hasAuth({ auth_type: 'Events' }) && app.hasAuth({ auth_type: 'Participants' }) && app.hasAuth({ auth_type: 'Contacts' })) { %>
+	<div class="row-fluid">
+		<div class="span6">
+			<a class="contact-events-link" href="/events/reports/contacts">{{.I "Event contacts" }}</a>
+		</div>
+	</div>
+	<% } %>
+	<% if (window.app != null && app.getDomain() != null && app.hasAuth({ auth_type: 'Events' }) && app.hasAuth({ auth_type: 'Participants' }) && app.hasAuth({ auth_type: 'Users' })) { %>
+	<div class="row-fluid">
+		<div class="span6">
+			<a class="user-events-link" href="/events/reports/users">{{.I "Event users" }}</a>
+		</div>
+	</div>
+	<% } %>
+</div>

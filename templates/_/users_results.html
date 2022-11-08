@@ -1,0 +1,87 @@
+<div class="row-fluid">
+	<div class="span12">
+		<table class="table table-condensed" id="user_list">
+			<caption>{{.I "Users"}}</caption>
+			<tr>
+				<th></th>
+				<th class="table-info">
+					{{.I "Given name" }}
+				</th>
+				<th class="table-info">
+					{{.I "Family name" }}
+				</th>
+				<th class="table-info">
+					{{.I "Email" }}
+				</th>
+				<th class="table-info">
+					{{.I "Mobile phone" }}
+				</th>
+				<th class="table-info">
+					{{.I "Information" }}
+				</th>
+				<% if (app.hasAuth({ auth_type: 'Users', write: true })) { %>
+				<th class="table-info">
+					<input type="checkbox" id="toggle_select_user_for_modification"<%- allChecked ? ' checked="checked"' : '' %>>
+				</th>
+				<% } %>
+				<% if (attestFilter != null) { %>
+				<th class="table-info">
+					{{.I "Attest" }}
+				</th>
+				<% } %>
+				<th class="table-info">
+					{{.I "Delete" }}
+				</th>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span8">
+		<% if (anyChecked) { %>
+		<div class="btn-group">
+			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				<% if (modificationMode == 'add_role') { %>
+				{{ .I "Add role" }}
+				<% } else if (modificationMode == 'remove_role') { %>
+				{{ .I "Remove role" }}
+				<% } else if (modificationMode == 'add_property') { %>
+				{{ .I "Add property" }}
+				<% } else if (modificationMode == 'remove_property') { %>
+				{{ .I "Remove property" }}
+				<% } %>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" id="available_modification_modes">
+				<li>
+				<a href="#" data-modification-mode="add_role">{{.I "Add role" }}</a>
+				</li>
+				<li>
+				<a href="#" data-modification-mode="remove_role">{{.I "Remove role" }}</a>
+				</li>
+				<li>
+				<a href="#" data-modification-mode="add_property">{{.I "Add property" }}</a>
+				</li>
+				<li>
+				<a href="#" data-modification-mode="remove_property">{{.I "Remove property" }}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="btn-group">
+			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				<%- modificationName %>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" id="available_modifications">
+			</ul>
+		</div>
+		<button class="btn" id="execute_modification">{{.I "Execute" }}</button>
+		<% } else { %>
+		<%   if (app.hasAuth({ auth_type: 'Users', write: true })) { %>
+		<input id="new_user" type="email" required placeholder="{{.I "New user email" }}">
+		<%   } %>
+		<% } %>
+	</div>
+</div>
+<hr/>
+{{.I "Emails of found users:" }} <input type="text" value="<%- emails.join(",") %>"> <textarea rows="1"><%- emails.join("\n") %></textarea>

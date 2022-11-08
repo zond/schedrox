@@ -1,0 +1,54 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span6">
+			<table class="table table-condensed table-striped" id="domain_list">
+				<caption>{{.I "Domains"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Name" }}
+					</th>
+					<th class="table-info">
+						{{.I "Salary mod"}}
+					</th>
+					<th class="table-info">
+						{{.I "Close and redirect to" }}
+					</th>
+					<th class="table-info">
+						{{.I "Delete" }}
+					</th>
+				</tr>
+			</table>
+			<input id="new_domain" type="text" placeholder="{{.I "New domain" }}">
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<a id="clean_search" class="btn btn-mini">{{.I "Clean search" }}</a>
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<a id="clean_user_properties" class="btn btn-mini">{{.I "Clean properties" }}</a>
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<a id="remove_encoded_keys" class="btn btn-mini">{{.I "Remove encoded keys" }}</a>
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<a id="convert_recurrence_exceptions" class="btn btn-mini">{{.I "Convert recurrence exceptions" }}</a>
+		</div>
+	</div>
+	<hr/>
+	<div class="row-fluid">
+		<div class="span6">
+			<a id="clean_detached_event_weeks" class="btn btn-mini">{{.I "Clean detached EventWeeks" }}</a>
+		</div>
+	</div>
+</div>

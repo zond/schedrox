@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+      <table class="table table-condensed table-striped" id="event_kind_list">
+	<caption>{{.I "Event kinds"}}</caption>
+	<tr>
+	  <th class="table-info">
+	    {{.I "Name" }}
+	  </th>
+	  <th class="table-info">
+	    {{.I "Color" }}
+	  </th>
+	  <th class="table-info">
+	    {{.I "Delete" }}
+	  </th>
+	</tr>
+      </table>
+      <% if (app.hasAuth({ auth_type: 'Event types', write: true })) { %>
+      <input id="new_kind" type="text" placeholder="{{.I "New kind" }}">
+      <% } %>
+    </div>
+    <div class="span6">
+      <table class="table table-condensed table-striped" id="event_type_list">
+	<caption>{{.I "Event types"}}</caption>
+	<tr>
+	  <th class="table-info">
+	    {{.I "Name" }}
+	  </th>
+	  <th class="table-info">
+	    {{.I "Kind" }}
+	  </th>
+	  <th class="table-info">
+	    {{.I "Color" }}
+	  </th>
+	  <th class="table-info">
+	    {{.I "Delete" }}
+	  </th>
+	</tr>
+      </table>
+      <% if (app.hasAuth({ auth_type: 'Event types', write: true })) { %>
+      <input id="new_type" type="text" placeholder="{{.I "New type" }}">
+      <% } %>
+    </div>
+  </div>
+</div>

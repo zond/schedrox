@@ -1,0 +1,34 @@
+<td>
+  <a href="/users/<%- model.get('id') %>" class="open" data-user-id="<%- model.get("id") %>"><img src="<%- model.gravatarImageURL({s: 20}) %>"></a>
+</td>
+<td>
+  <a href="/users/<%- model.get('id') %>" class="<%- disabled ? 'disab ' : '' %>open" data-user-id="<%- model.get("id") %>"><%- model.get('given_name') %></a>
+</td>
+<td>
+  <a href="/users/<%- model.get('id') %>" class="<%- disabled ? 'disab ' : '' %>open" data-user-id="<%- model.get("id") %>"><%- model.get('family_name') %></a>
+</td>
+<td>
+  <a href="/users/<%- model.get('id') %>" class="<%- disabled ? 'disab ' : '' %>open" data-user-id="<%- model.get("id") %>"><%- model.get("email") %></a>
+</td>
+<td>
+  <a href="/users/<%- model.get('id') %>" class="<%- disabled ? 'disab ' : '' %>open" data-user-id="<%- model.get("id") %>"><%- model.get("mobile_phone") %></a>
+</td>
+<td>
+	<span class="user-information"><%- information %></span>
+</td>
+<% if (app.hasAuth({ auth_type: 'Users', write: true })) { %>
+<td>
+  <input type="checkbox" data-user-id="<%- model.get('id') %>" class="select-user-for-modification"<%- checked[model.get('id')] ? ' checked="checked"' : '' %>>
+</td>
+<% } %>
+<% if (attestFilter != null) { %>
+<td>
+	<a href="/users/<%- model.get('id') %>/attest/<%- attestFrom.getTime() %>-<%- attestTo.getTime() %>" class="<%- disabled ? 'disab ' : '' %>attest" data-user-id="<%- model.get('id') %>"><%- attestFilter.desc %></a>
+</td>
+<% } %>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Users', write: true })) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

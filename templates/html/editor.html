@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="/css/{{.Version}}/all.css" rel="stylesheet" media="screen">
+	<script src="/js/{{.Version}}/all.js" type="text/javascript"></script>
+	<title>{{.User.FirstDomain.Name }}</title>
+</head>
+<body>
+	<button id="editor_save" class="btn btn-mini">{{.I "Save" }}</button>
+	<div id="editor"></div>
+
+	<script src="/editor/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		var editor = ace.edit("editor");
+		var warn = false;
+		editor.setTheme("ace/theme/monokai");
+		editor.getSession().setMode("ace/mode/javascript");
+		editor.setShowPrintMargin(false);
+		$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+			if (options.headers == null) {
+				options.headers = {};
+			}
+			if (options.headers['Authorization'] == null) {
+				options.headers['Authorization'] = 'realm={{.User.FirstDomain.Id.Encode}}';
+			}
+		});
+		editor.getSession().on('change', function(ev) {
+			if (warn) {
+				$('#editor_save').addClass('btn-danger');
+			}
+		});
+		var salaryConfig = new SalaryConfig({});
+		salaryConfig.fetch({
+			success: function() {
+				editor.getSession().setValue(salaryConfig.get('salary_code'));
+				warn = true;
+			},
+		});
+		$('#editor_save').on('click', function(ev) {
+			ev.preventDefault();
+			salaryConfig.set('salary_code', editor.getSession().getValue());
+			salaryConfig.save(null, {
+				success: function() {
+					$('#editor_save').removeClass('btn-danger');
+				},
+			});
+		});
+
+	</script>
+</body>
+</html>
+

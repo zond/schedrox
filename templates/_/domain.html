@@ -1,0 +1,13 @@
+<td>
+  <%- model.get("name") %>
+</td>
+<td>
+	<input type="checkbox" class="domain-salary-mod" value="true"<%- model.get('salary_mod') ? 'checked="checked"' : ''%>">
+</td>
+<td>
+	<input type="text" class="domain-closed-and-redirected-to" value="<%- model.get('closed_and_redirected_to') %>">
+</td>
+<td>
+  <button type="button" class="close">&times;</button>
+</td>
+

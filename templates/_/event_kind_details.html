@@ -1,0 +1,33 @@
+<div class="container-fluid">
+	<h3><%- model.get('name') %></h3>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_kind_series_editable">{{.I "Allow editing of entire series of events"}}</label>
+		</div>
+		<div class="span6">
+			<input type="checkbox"<%- model.get('series_editable') ? ' checked="checked" ' : ' ' %>class="toggle-series-editable"<%- app.hasAuth({ auth_type: 'Event types', write: true }) ? '' : ' disabled' %>>	
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_kind_alert">{{.I "Alert users about ongoing events upon login"}}</label>
+		</div>
+		<div class="span6">
+			<input type="checkbox"<%- model.get('alert') ? ' checked="checked" ' : ' ' %>class="toggle-alert"<%- app.hasAuth({ auth_type: 'Event types', write: true }) ? '' : ' disabled' %>>	
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_kind_block">{{.I "Block concurrent events in the calendar"}}</label>
+		</div>
+		<div class="span6">
+			<input type="checkbox"<%- model.get('block') ? ' checked="checked" ' : ' ' %>class="toggle-block"<%- app.hasAuth({ auth_type: 'Event types', write: true }) ? '' : ' disabled' %>>
+		</div>
+	</div>
+	<% if (window.app != null && app.getDomain() != null && app.getDomain().get('salary_mod') && (app.getDomain().get('salary_config').salary_event_type_properties || []).length > 0) { %>
+	<hr/>
+	<div id="salary_properties">
+	</div>
+	<% } %>
+</div>
+

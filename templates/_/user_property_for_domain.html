@@ -1,0 +1,16 @@
+<td>
+  <%- model.get("name") %>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Domain', write: true })) { %>
+  <input type="number" class="user-property-days-valid" value="<%- model.get('days_valid') %>"<%- write_auth ? "" : " disabled" %>>
+  <% } else { %>
+  <%- model.get("days_valid") %>
+  <% } %>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Domain', write: true })) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

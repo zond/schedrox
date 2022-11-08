@@ -1,0 +1,33 @@
+<td>
+	<% if (window.app != null && app.getDomain() != null && app.getDomain().get('salary_mod')) { %>
+	<a href="/events/participants/<%= model.get('id') %>" class="open-type" data-participant-type-id="<%- model.get("id") %>"><%- model.get("name") %></a>
+	<% } else { %>
+	<%- model.get("name") %>
+	<% } %>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Event types', write: true })) { %>
+  <div class="btn-group">
+    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+      <%- model.get('is_contact') ? '{{.I "Contact" }}' : '{{.I "User" }}' %>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" id="available_kinds">
+      <li>
+      <a href="#" data-is-contact="true" class="is-contact">{{.I "Contact" }}</a>
+      </li>
+      <li>
+      <a href="#" data-is-contact="false" class="is-contact">{{.I "User" }}</a>
+      </li>
+    </ul>
+  </div>
+  <% } else { %>
+  <%- model.get('is_contact') ? '{{.I "Contact" }}' : '{{.I "User" }}' %>
+  <% } %>
+</td>
+<td>
+  <% if (app.hasAuth({ auth_type: 'Event types', write: true })) { %>
+  <button type="button" class="close">×</button>
+  <% } %>
+</td>
+

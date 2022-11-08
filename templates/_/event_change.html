@@ -1,0 +1,39 @@
+<dt>
+  <% if (user_auth) { %>
+  <a href="#" class="change-heading"><%- translations[model.get('action')] %></a>
+  <% } else { %>
+  <%- translations[model.get('action')] %>
+  <% } %>
+</dt>
+<dd>
+  <% if (expanded) { %>
+  <table class="table table-condensed">
+    <tr>
+      <td>{{.I "Actor" }}</td>
+			<% if (user.get('given_name') == null) { %>
+      <td><%- user.get('email') %></td>
+			<% } else { %>
+      <td><%- '{{.I "name_order" }}'.format(user.get('given_name'), user.get('family_name')) %></td>
+			<% } %>
+    </tr>
+    <tr>
+      <td>{{.I "Time" }}</td>
+      <td><%- anyTimeConverter.format(model.get('at')) %></td>
+    </tr>
+    <tr>
+      <td>{{.I "Data" }}</td>
+      <td>
+	<pre>
+	<%- JSON.stringify(JSON.parse(model.get('data')), null, 2) %>
+	</pre>
+      </td>
+    </tr>
+  </table>
+  <% } else { %>
+  <% if (user_auth) { %>
+  <a href="#" class="change-heading"><%- $.timeago(model.get('at')) %></a>
+  <% } else { %>
+  <%- $.timeago(model.get('at')) %>  
+  <% } %>
+  <% } %>
+</dd>

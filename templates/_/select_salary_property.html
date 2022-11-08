@@ -1,0 +1,24 @@
+<div class="row-fluid">
+	<div class="span6">
+		<label><%- model.name %></label>
+	</div>
+	<div class="span6">
+		<% if (write_auth) { %>
+		<div class="btn-group">
+			<a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+				<%- (getter() || {})[model.name] %>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<% if (model.options != null && model.options.length > 0) { %>
+				<%   for (var i = 0; i < model.options.length; i++) { %>
+				<li><a href="#" data-select-option="<%- model.options[i] %>" class="select-property"><%- model.options[i] %></a></li>
+				<%   } %>
+				<% } %>
+			</ul>
+		</div>
+		<% } else { %>
+		<%- (getter() || {})[model.name] %>
+		<% } %>
+	</div>
+</div>

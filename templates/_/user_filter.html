@@ -1,0 +1,17 @@
+<td>
+  <%- model.name %>
+</td>
+<td>
+  <div class="btn-group">
+    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+      <%- model.desc %>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu <%- model.type %>-filter">
+    </ul>
+  </div>
+</td>
+<td>
+  <button type="button" data-filter-type="<%- model.type %>" data-filter-value="<%- model.value %>" class="close">×</button>
+</td>
+

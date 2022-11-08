@@ -1,0 +1,102 @@
+<div class="container-fluid">
+	<h3><%- model.get('name') %></h3>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_type_display_users_in_calendar">{{.I "Display user names in calendar"}}</label>
+		</div>
+		<div class="span6">
+			<input<%= write_auth ? "" : ' disabled="disabled"' %> type="checkbox" id="event_type_display_users_in_calendar" value="true"<%- model.get('display_users_in_calendar') ? 'checked="checked"' : ''%>">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_type_unique">{{.I "Unique"}}</label>
+		</div>
+		<div class="span6">
+			<input<%= write_auth ? "" : ' disabled="disabled"' %> type="checkbox" id="event_type_unique" value="true"<%- model.get('unique') ? 'checked="checked"' : ''%>">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_type_name_hidden">{{.I "Name hidden in calendar"}}</label>
+		</div>
+		<div class="span6">
+			<input<%= write_auth ? "" : ' disabled="disabled"' %> type="checkbox" id="event_type_name_hidden_in_calendar" value="true"<%- model.get('name_hidden_in_calendar') ? 'checked="checked"' : ''%>">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_type_default_minutes">{{.I "Minutes"}}</label>
+		</div>
+		<div class="span6">
+			<input type="number" id="event_type_default_minutes" value="<%- model.get('default_minutes') || 0 %>"<%- write_auth ? "" : " disabled" %>>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_type_title_size">{{.I "Title size"}}</label>
+		</div>
+		<div class="span6">
+			<input type="number" id="event_type_title_size" value="<%- model.get('title_size') || 100 %>"<%- write_auth ? "" : " disabled" %>>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label for="event_type_participants_format">{{.I "Participants format"}}</label>
+		</div>
+		<div class="span6">
+			<input id="event_type_participants_format" type="text" title="{{.I "{0} is current contacts, {1} is required contacts, {2} is allowed contacts, {3} is current users, {4} is accepted users, {5} is required users, {6} is allowed users"}}" value="<%- model.get('participants_format') || eventParticipantsDefaultFormat %>" >
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_type_signal_colors_when_0_contacts">{{.I "Enable signal colors even when there are no contact participants"}}</label>
+		</div>
+		<div class="span6">
+			<input<%= write_auth ? "" : ' disabled="disabled"' %> type="checkbox" id="event_type_signal_colors_when_0_contacts" value="true"<%- model.get('signal_colors_when_0_contacts') ? 'checked="checked"' : ''%>">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_type_signal_colors_when_more_possible_contacts">{{.I "Signal colors when more contact participants possible"}}</label>
+		</div>
+		<div class="span6">
+			<input<%= write_auth ? "" : ' disabled="disabled"' %> type="checkbox" id="event_type_signal_colors_when_more_possible_contacts" value="true"<%- model.get('signal_colors_when_more_possible_contacts') ? 'checked="checked"' : ''%>">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<label class="control-label" for="event_type_signal_colors_when_more_possible_users">{{.I "Signal colors when more user participants possible"}}</label>
+		</div>
+		<div class="span6">
+			<input<%= write_auth ? "" : ' disabled="disabled"' %> type="checkbox" id="event_type_signal_colors_when_more_possible_users" value="true"<%- model.get('signal_colors_when_more_possible_users') ? 'checked="checked"' : ''%>">
+		</div>
+	</div>
+	<% if (window.app != null && app.getDomain() != null && app.getDomain().get('salary_mod') && (app.getDomain().get('salary_config').salary_event_type_properties || []).length > 0) { %>
+	<hr/>
+	<div id="salary_properties">
+	</div>
+	<% } %>
+	<hr/>
+  <div class="row-fluid">
+    <div class="span12">
+      <div id="participant_types"></div>
+    </div>
+  </div>
+  <hr/>
+  <h5>{{.I "Confirmation email template" }}</h5>
+  <ul class="nav nav-tabs">
+    <li<%= mode == 'edit' ? ' class="active"' : '' %>>
+    <a data-mode="edit" href="#">{{.I "Edit" }}</a>
+    </li>
+    <li<%= mode == 'preview' ? ' class="active"' : '' %>>
+    <a data-mode="preview" href="#">{{.I "Preview" }}</a>
+    </li>
+    <li<%= mode == 'help' ? ' class="active"' : '' %>>
+    <a data-mode="help" href="#">{{.I "Help" }}</a>
+    </li>
+  </ul>
+  <div id="confirmation_container">
+  </div>
+</div>
+

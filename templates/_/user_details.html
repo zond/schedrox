@@ -1,0 +1,118 @@
+<div class="container-fluid">
+	<% if (!hide_profile_link) { %>
+	<div class="row-fluid">
+		<div class="span12">
+			<a href="#" class="view-profile-link" data-id="<%- model.get('id') %>">{{.I "See the public profile of this user" }}</a>
+		</div>
+	</div>
+	<% } %>
+	<div class="row-fluid">
+		<div class="span6">
+			<form class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="user_email">{{.I "Email"}}</label>
+					<div class="controls">
+						<input disabled="disabled" id="user_email" type="text" value="<%- model.get('email') %>">
+						<% if (model.get('email_bounce') != null && model.get('email_bounce') != '') { %>
+						<div class="alert">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<a href="/<%- app.getDomain().get('id') %>/users/<%- model.get('id') %>/bounce_message" target="_blank" class="btn btn-mini">{{.I "View email error message" }}</a>
+							<button id="clear_email_bounce" class="btn btn-mini">{{.I "Clear email error message" }}</button>
+						</div>
+						<% } %>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="user_given_name">{{.I "Given name"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="user_given_name" type="text" value="<%- model.get('given_name') %>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="user_family_name">{{.I "Family name"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="user_family_name" type="text" value="<%- model.get('family_name') %>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="user_mobile_phone">{{.I "Mobile phone"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> id="user_mobile_phone" type="text" value="<%- model.get('mobile_phone') %>">
+					</div>
+				</div>
+				<% if (model.get('domains') != null && model.get('domains').length > 0) { %>
+				<div class="control-group">
+					<label class="control-label" for="user_owner">{{.I "Owner"}}</label>
+					<div class="controls">
+						<input<%= app.isAdmin() || app.isOwner() ? "" : ' disabled="disabled"' %> type="checkbox" id="user_owner" name="owner" value="true"<%- model.get('admin') || model.get('domains')[0].owner ? 'checked="checked"' : ''%>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="user_disabled">{{.I "Disabled"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> type="checkbox" id="user_disabled" name="disabled" value="true"<%- model.get('domains')[0].disabled ? 'checked="checked"' : ''%>">
+					</div>
+				</div>
+				<%   if (model.get('domains')[0].limited_ics) { %>
+				<div class="control-group">
+					<label class="control-label" for="user_allow_ics">{{.I "Enable calendar attachments"}}</label>
+					<div class="controls">
+						<input<%= write_auth ? "" : ' disabled="disabled"' %> type="checkbox" id="user_allow_ics" name="disabled" value="true"<%- model.get('domains')[0].allow_ics ? 'checked="checked"' : ''%>">
+					</div>
+				</div>
+				<%   } %>
+				<% } %>
+			</form>
+		</div>
+		<div class="span6">
+			<label for="user_information">{{.I "Information"}}</label>
+			<textarea name="information" id="user_information"<%- write_auth ? "" : " disabled" %>><%- model.get('domains')[0].information %></textarea>
+			<table class="table table-condensed table-striped" id="user_property_list">
+				<caption>{{.I "User properties"}}</caption>
+				<tr>
+					<th class="table-info">
+						{{.I "Name" }}
+					</th>
+					<th class="table-info">
+						{{.I "Assigned at" }}
+					</th>
+					<th class="table-info">
+						{{.I "Valid until" }}
+					</th>
+					<th class="table-info">
+						{{.I "Delete" }}
+					</th>
+				</tr>
+			</table>
+			<% if (write_auth) { %>
+			<div class="btn-group">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					{{.I "New property" }}
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" id="available_user_properties">
+				</ul>
+			</div>
+			<% } %>
+		</div>
+	</div>
+	<% if (window.app != null && app.getDomain() != null && app.getDomain().get('salary_mod') && (app.getDomain().get('salary_config').salary_user_properties || []).length > 0) { %>
+	<hr/>
+	<div id="salary_properties">
+	</div>
+	<% } %>
+	<% if (app.hasAnyAuth({auth_type: 'Roles'})) { %>
+	<hr/>
+	<div class="row-fluid">
+		<div id="roles" class="span4"></div>
+		<div id="auths" class="span8"></div>
+	</div>
+	<% } %>
+	<% if (window.app != null && app.getDomain() != null && app.getDomain().get('salary_mod') && app.hasAnyAuth({ auth_type: 'Attest' })) { %>
+	<hr/>
+	<div class="row-fluid">
+		<div id="salaries" class="span6">
+		</div>
+	</div>
+  <% } %>
+</div>

@@ -1,0 +1,20 @@
+Hej {{.participant.GivenName}},
+
+Du har blivit borttagen från följande händelse:{{if .event.Title}}
+Titel: {{.event.Title}}{{end}}
+Typ: {{.event.EventType.StringID}}
+Sort: {{.event.EventKind.StringID}}
+Plats: {{.event.Location.StringID}}
+Start: {{.event.Start.Format "15:04 01/02/06"}}
+Slut: {{.event.End.Format "15:04 01/02/06"}}
+
+{{if .event.Recurring}}Upprepas fram till {{.event.RecurrenceEnd.Format "15:04 01/02/06"}}
+
+{{end}}{{if .event.Information}}Information:
+{{.event.Information}}
+
+{{end}}----
+Detta är ett automatiskt meddelande skickat av Schedrox.
+Gå till http://{{.AppID}}.appspot.com/profile för att stänga av dem.
+Gå till http://{{.AppID}}.appspot.com/calendar/{{.event.Id.Encode}} för att se händelsen.
+
