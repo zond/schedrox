@@ -5,7 +5,7 @@ import (
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
-	"monotone/se.oort.schedrox/common"
+	"github.com/zond/schedrox/common"
 	"reflect"
 	"strings"
 )

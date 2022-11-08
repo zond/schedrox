@@ -2,7 +2,7 @@ package appuser
 
 import (
 	"fmt"
-	"monotone/se.oort.schedrox/common"
+	"github.com/zond/schedrox/common"
 	"strings"
 
 	"github.com/zond/sybutils/utils/gae/gaecontext"

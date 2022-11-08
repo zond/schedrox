@@ -3,10 +3,10 @@ package web
 import (
 	"bytes"
 	"io"
-	"monotone/se.oort.schedrox/auth"
-	"monotone/se.oort.schedrox/common"
-	"monotone/se.oort.schedrox/crm"
-	"monotone/se.oort.schedrox/event"
+	"github.com/zond/schedrox/auth"
+	"github.com/zond/schedrox/common"
+	"github.com/zond/schedrox/crm"
+	"github.com/zond/schedrox/event"
 
 	"github.com/gorilla/mux"
 	"github.com/zond/sybutils/utils/gae/gaecontext"

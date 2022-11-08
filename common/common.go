@@ -68,10 +68,7 @@ var snappyMsgPack = amemcache.Codec{
 			return
 		}
 		if len(encoded) > 999750 {
-			var compacted []byte
-			if compacted, err = snappy.Encode(nil, encoded); err != nil {
-				return
-			}
+			compacted := snappy.Encode(nil, encoded)
 			b = make([]byte, len(compacted)+1)
 			b[0] = 1
 			copy(b[1:], compacted)

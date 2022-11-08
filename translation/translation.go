@@ -3,7 +3,7 @@ package translation
 import (
 	"bytes"
 	"fmt"
-	"monotone/se.oort.schedrox/common"
+	"github.com/zond/schedrox/common"
 	"net/http"
 	"strings"
 	"text/template"

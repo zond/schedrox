@@ -1,8 +1,8 @@
 package web
 
 import (
-	"monotone/se.oort.schedrox/auth"
-	"monotone/se.oort.schedrox/common"
+	"github.com/zond/schedrox/auth"
+	"github.com/zond/schedrox/common"
 
 	"github.com/gorilla/mux"
 	"github.com/zond/sybutils/utils/gae/gaecontext"

@@ -2,9 +2,9 @@ package event
 
 import (
 	"bytes"
-	"monotone/se.oort.schedrox/appuser"
-	"monotone/se.oort.schedrox/common"
-	"monotone/se.oort.schedrox/crm"
+	"github.com/zond/schedrox/appuser"
+	"github.com/zond/schedrox/common"
+	"github.com/zond/schedrox/crm"
 	"text/template"
 	"time"
 

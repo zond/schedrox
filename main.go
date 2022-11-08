@@ -2,7 +2,7 @@ package main
 
 import (
 	"google.golang.org/appengine"
-	_ "monotone/se.oort.schedrox/web"
+	_ "github.com/zond/schedrox/web"
 )
 
 func main() {

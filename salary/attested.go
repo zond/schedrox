@@ -2,9 +2,9 @@ package salary
 
 import (
 	"fmt"
-	"monotone/se.oort.schedrox/auth"
-	"monotone/se.oort.schedrox/common"
-	"monotone/se.oort.schedrox/event"
+	"github.com/zond/schedrox/auth"
+	"github.com/zond/schedrox/common"
+	"github.com/zond/schedrox/event"
 	"sort"
 	"time"
 

@@ -1,11 +1,11 @@
 package web
 
 import (
-	"monotone/se.oort.schedrox/appuser"
-	"monotone/se.oort.schedrox/auth"
-	"monotone/se.oort.schedrox/common"
-	"monotone/se.oort.schedrox/event"
-	"monotone/se.oort.schedrox/salary"
+	"github.com/zond/schedrox/appuser"
+	"github.com/zond/schedrox/auth"
+	"github.com/zond/schedrox/common"
+	"github.com/zond/schedrox/event"
+	"github.com/zond/schedrox/salary"
 	"net/http"
 	"regexp"
 	"strings"

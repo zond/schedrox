@@ -3,7 +3,7 @@ package event
 import (
 	"encoding/json"
 	"fmt"
-	"monotone/se.oort.schedrox/common"
+	"github.com/zond/schedrox/common"
 	"sort"
 	"time"
 

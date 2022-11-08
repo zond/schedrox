@@ -2,10 +2,10 @@ package web
 
 import (
 	"fmt"
-	"monotone/se.oort.schedrox/auth"
-	"monotone/se.oort.schedrox/common"
-	"monotone/se.oort.schedrox/domain"
-	"monotone/se.oort.schedrox/salary"
+	"github.com/zond/schedrox/auth"
+	"github.com/zond/schedrox/common"
+	"github.com/zond/schedrox/domain"
+	"github.com/zond/schedrox/salary"
 
 	"github.com/gorilla/mux"
 	"github.com/zond/sybutils/utils/gae/gaecontext"

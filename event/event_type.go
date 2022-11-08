@@ -3,8 +3,8 @@ package event
 import (
 	"encoding/json"
 	"fmt"
-	"monotone/se.oort.schedrox/auth"
-	"monotone/se.oort.schedrox/common"
+	"github.com/zond/schedrox/auth"
+	"github.com/zond/schedrox/common"
 	"time"
 
 	"github.com/zond/sybutils/utils/gae/gaecontext"

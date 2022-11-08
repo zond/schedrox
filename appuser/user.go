@@ -6,20 +6,20 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"sort"
 	"strings"
 	"time"
 
-	"monotone/se.oort.schedrox/auth"
-	"monotone/se.oort.schedrox/common"
-	"monotone/se.oort.schedrox/domain"
-	"monotone/se.oort.schedrox/search"
+	"github.com/zond/schedrox/auth"
+	"github.com/zond/schedrox/common"
+	"github.com/zond/schedrox/domain"
+	"github.com/zond/schedrox/search"
 
 	"github.com/zond/sybutils/utils/gae/gaecontext"
 
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
-	"google.golang.org/appengine/log"
 	"google.golang.org/appengine/mail"
 	"google.golang.org/appengine/user"
 )
@@ -232,12 +232,12 @@ func (self *User) SendMail(c gaecontext.HTTPContext, domainKey *datastore.Key, s
 			self.Save(c)
 		}
 	} else {
-		log.Debugf(c, "Would have sent\n%v\nif appengine.AppID(c) [%+v] == schedrox", msg, appengine.AppID(c))
+		log.Printf("Would have sent\n%v\nif appengine.AppID(c) [%+v] == schedrox", msg, appengine.AppID(c))
 	}
 	if appengine.IsDevAppServer() {
-		log.Debugf(c, "Body in above mail: %v", body)
+		log.Printf("Body in above mail: %v", body)
 		for _, a := range attachments {
-			log.Debugf(c, "Attachment in above mail: %v => %v", a.Name, string(a.Data))
+			log.Printf("Attachment in above mail: %v => %v", a.Name, string(a.Data))
 		}
 	}
 }
@@ -518,14 +518,14 @@ func GetFilteredUsersByPrefix(c gaecontext.HTTPContext, dom *datastore.Key, auth
 			hasUnattestedFilter = true
 			from := time.Unix(common.MustParseInt64(fromTo[0]), 0)
 			to := time.Unix(common.MustParseInt64(fromTo[1]), 0)
-			log.Infof(c, "Finding unattested users between %v and %v", from, to)
+			log.Printf("Finding unattested users between %v and %v", from, to)
 			done = GetUnattestedUids(c, dom, authorizer, from, to, done, byUnattested)
 		} else if parts[0] == "attested" {
 			fromTo := strings.Split(parts[1], "-")
 			hasAttestedFilter = true
 			from := time.Unix(common.MustParseInt64(fromTo[0]), 0)
 			to := time.Unix(common.MustParseInt64(fromTo[1]), 0)
-			log.Infof(c, "Finding attested users between %v and %v", from, to)
+			log.Printf("Finding attested users between %v and %v", from, to)
 			done = GetAttestedUids(c, dom, authorizer, from, to, done, byAttested)
 		} else if parts[0] == "norole" {
 			hasNoRoleFilter = true
@@ -903,10 +903,10 @@ func GetUserByKey(c gaecontext.HTTPContext, k *datastore.Key) *User {
 	var user User
 	if common.Memoize(c, UserKeyForId(k), &user, func() interface{} {
 		rval := FindUser(c, k)
-		c.Infof("Found %+v", rval)
+		log.Printf("Found %+v", rval)
 		return rval
 	}) {
-		c.Infof("Processing %+v", user)
+		log.Printf("Processing %+v", user)
 		return (&user).Process(c)
 	}
 	return nil
@@ -1033,7 +1033,7 @@ func (self *User) getDomains(c gaecontext.HTTPContext) (result []domain.Domain) 
 		result[index].AllowICS = domainUser.AllowICS
 		if domainUser.SalarySerializedProperties != nil {
 			if err := json.Unmarshal(domainUser.SalarySerializedProperties, &(result[index].SalaryProperties)); err != nil {
-				log.Errorf(c, "Unable to unserialize %#v", string(domainUser.SalarySerializedProperties))
+				log.Printf("Unable to unserialize %#v", string(domainUser.SalarySerializedProperties))
 			}
 		}
 	}
@@ -1176,12 +1176,12 @@ type APIUser struct {
 }
 
 func GetCurrentUser(c gaecontext.HTTPContext) (appuser *User, email *string) {
-	c.Infof("getcurrentuser")
+	log.Printf("getcurrentuser")
 	if apiUserSecret := c.Req().Header.Get("x-api-user-secret"); apiUserSecret != "" {
-		c.Infof("apiUserSecret %v", apiUserSecret)
+		log.Printf("apiUserSecret %v", apiUserSecret)
 		apiUser := &APIUser{}
 		if err := datastore.Get(c, datastore.NewKey(c, "APIUser", apiUserSecret, 0, nil), apiUser); err != nil {
-			c.Warningf("Trying to load APIUser for %q: %v", apiUserSecret, err)
+			log.Printf("Trying to load APIUser for %q: %v", apiUserSecret, err)
 			return nil, nil
 		}
 		appuser = GetUser(c, apiUser.AppUserEmail)
@@ -1199,7 +1199,7 @@ func GetCurrentUser(c gaecontext.HTTPContext) (appuser *User, email *string) {
 				appuser = nil
 			}
 		}
-		c.Infof("returning %v, %v", appuser, email)
+		log.Printf("returning %v, %v", appuser, email)
 		return appuser, email
 	}
 

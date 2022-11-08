@@ -2,16 +2,17 @@ package salary
 
 import (
 	"fmt"
-	"monotone/se.oort.schedrox/auth"
-	"monotone/se.oort.schedrox/common"
-	"monotone/se.oort.schedrox/event"
+	"log"
 	"sort"
 	"time"
+
+	"github.com/zond/schedrox/auth"
+	"github.com/zond/schedrox/common"
+	"github.com/zond/schedrox/event"
 
 	"github.com/zond/sybutils/utils/gae/gaecontext"
 
 	"google.golang.org/appengine/datastore"
-	"google.golang.org/appengine/log"
 )
 
 func periodReportedIdForDomainAndPeriod(c gaecontext.HTTPContext, dom *datastore.Key, from, to time.Time) *datastore.Key {
@@ -63,7 +64,7 @@ func DeleteEncodedKeys(c gaecontext.HTTPContext) (deleted int) {
 					return
 				}
 				deleted++
-				log.Infof(c, "### replaced %v with %v", id, newId)
+				log.Printf("### replaced %v with %v", id, newId)
 				return nil
 			}, true); err != nil {
 				panic(err)
@@ -87,7 +88,7 @@ func DeleteEncodedKeys(c gaecontext.HTTPContext) (deleted int) {
 					return
 				}
 				deleted++
-				log.Infof(c, "### replaced %v with %v", id, newId)
+				log.Printf("### replaced %v with %v", id, newId)
 				return nil
 			}, true); err != nil {
 				panic(err)
@@ -111,7 +112,7 @@ func DeleteEncodedKeys(c gaecontext.HTTPContext) (deleted int) {
 					return
 				}
 				deleted++
-				log.Infof(c, "### replaced %v with %v", id, newId)
+				log.Printf("### replaced %v with %v", id, newId)
 				return nil
 			}, true); err != nil {
 				panic(err)
@@ -135,7 +136,7 @@ func DeleteEncodedKeys(c gaecontext.HTTPContext) (deleted int) {
 					return
 				}
 				deleted++
-				c.Infof("### replaced %v with %v", id, newId)
+				log.Printf("### replaced %v with %v", id, newId)
 				return nil
 			}, true); err != nil {
 				panic(err)
@@ -255,7 +256,7 @@ func (self reportedEvents) Swap(i, j int) {
 }
 
 func GetReportedForUser(c gaecontext.HTTPContext, dom *datastore.Key, from, to time.Time, user *datastore.Key, authorizer auth.Authorizer) (result event.Events) {
-	c.Infof("Getting attested events between %v and %v", from, to)
+	log.Printf("Getting attested events between %v and %v", from, to)
 	var preResult event.Events
 	common.Memoize(c, reportedKeyForDomainPeriodAndUser(dom, from, to, user), &preResult, func() interface{} {
 		return findReportedForUser(c, dom, from, to, user)
