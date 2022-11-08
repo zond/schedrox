@@ -1204,6 +1204,7 @@ func GetCurrentUser(c gaecontext.HTTPContext) (appuser *User, email *string) {
 	}
 
 	u := user.Current(c)
+	log.Printf("u is %+v", u)
 	if u != nil {
 		email = &u.Email
 		appuser = GetUser(c, u.Email)
